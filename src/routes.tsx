@@ -6,9 +6,13 @@ import { Home } from '@/pages/app/home'
 import { SignIn } from '@/pages/auth/sign-in'
 import { SignUp } from '@/pages/auth/sign-up'
 
+import { AdminLayout } from './pages/_layouts/admin'
+import { RegisterLayout } from './pages/_layouts/register'
+import { AdminHome } from './pages/admin/home'
 import { PrivateRoutes } from './private-routes'
 
 export const router = createBrowserRouter([
+  // No-Authenticated User routes
   {
     path: '/',
     element: <AppLayout />,
@@ -20,9 +24,10 @@ export const router = createBrowserRouter([
     ],
   },
 
+  // Auth routes
   {
     path: '/',
-    element: <AuthLayout />,
+    element: <RegisterLayout />,
     children: [
       {
         path: '/login',
@@ -35,13 +40,26 @@ export const router = createBrowserRouter([
     ],
   },
 
+  // Admin layout
   {
     path: '/',
-    element: <AppLayout />,
+    element: <AdminLayout />,
     children: [
       {
-        path: 'app/home',
-        element: <PrivateRoutes element={<Home />} />,
+        path: 'admin/',
+        element: <PrivateRoutes element={<AdminHome />} />,
+      },
+    ],
+  },
+
+  // Authenticated User routes
+  {
+    path: '/',
+    element: <AuthLayout />,
+    children: [
+      {
+        path: 'app/',
+        element: <Home />,
       },
     ],
   },
