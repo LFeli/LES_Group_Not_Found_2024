@@ -6,7 +6,7 @@ import { Button } from '../ui/button'
 
 export function HeaderApp() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b-2 border-border/40 bg-yellow-50/95 font-rubik backdrop-blur supports-[backdrop-filter]:bg-yellow-50/80">
+    <header className="sticky top-0 z-50 w-full border-b-2 border-border/60 bg-yellow-50/95 font-rubik backdrop-blur supports-[backdrop-filter]:bg-yellow-50/80">
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between px-6 py-12">
         {/* Logo */}
         <div className="flex items-center gap-3">
