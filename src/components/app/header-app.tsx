@@ -1,13 +1,13 @@
 import { PawPrint } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-import { NavLink } from './nav-links'
-import { Button } from './ui/button'
+import { NavLink } from '../nav-links'
+import { Button } from '../ui/button'
 
 export function HeaderApp() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-yellow-50/95 backdrop-blur supports-[backdrop-filter]:bg-yellow-50/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center justify-between py-12">
+      <div className="container flex h-14 max-w-screen-2xl items-center justify-between px-6 py-12">
         {/* Logo */}
         <div className="flex items-center gap-3">
           <PawPrint className="h-8 w-8 text-yellow-500" />

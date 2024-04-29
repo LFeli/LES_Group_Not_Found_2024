@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
-import { HeaderApp } from '@/components/header-app'
+import { FooterApp } from '@/components/app/footer-app'
+import { HeaderApp } from '@/components/app/header-app'
 
 export function AppLayout() {
   return (
@@ -9,7 +10,7 @@ export function AppLayout() {
 
       <Outlet />
 
-      <footer className="bg-zinc-800 py-16">Footer</footer>
+      <FooterApp />
     </div>
   )
 }
