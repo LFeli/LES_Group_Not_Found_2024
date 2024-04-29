@@ -8,7 +8,7 @@ export function FooterAppLinks() {
     <>
       <article>
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-zinc-50">Home</span>
+          <span className="font-rubik font-semibold text-zinc-50">Home</span>
 
           <div className="flex flex-col gap-2 text-sm text-zinc-400">
             <Link
@@ -41,7 +41,9 @@ export function FooterAppLinks() {
 
       <article>
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-zinc-50">Postagens</span>
+          <span className="font-rubik font-semibold text-zinc-50">
+            Postagens
+          </span>
 
           <div className="flex flex-col gap-2 text-sm text-zinc-400">
             <Link
@@ -56,7 +58,7 @@ export function FooterAppLinks() {
 
       <article>
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-zinc-50">FAQ</span>
+          <span className="font-rubik font-semibold text-zinc-50">FAQ</span>
 
           <div className="flex flex-col gap-2 text-sm text-zinc-400">
             <Link
@@ -98,7 +100,9 @@ export function FooterAppLinks() {
 
       <article>
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-zinc-50">Patrocinador</span>
+          <span className="font-rubik font-semibold text-zinc-50">
+            Patrocinador
+          </span>
 
           <div className="flex flex-col gap-2 text-sm text-zinc-400">
             <Link
@@ -140,7 +144,7 @@ export function FooterAppLinks() {
 
       <article>
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-zinc-50">Contato</span>
+          <span className="font-rubik font-semibold text-zinc-50">Contato</span>
 
           <div className="flex flex-col gap-2 text-sm text-zinc-400">
             <Link
@@ -155,7 +159,7 @@ export function FooterAppLinks() {
 
       <article className="flex items-end justify-center">
         <div className="flex items-center gap-4">
-          <span className="block text-base font-medium text-zinc-200">
+          <span className="font-rubik block text-base font-medium text-zinc-200">
             Voltar ao topo
           </span>
 

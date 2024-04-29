@@ -10,7 +10,7 @@ export function FooterApp() {
         <div className="flex flex-col items-start gap-4">
           <div className="flex items-center gap-3">
             <PawPrint className="h-8 w-8 text-yellow-500" />
-            <span className="text-2xl font-semibold text-zinc-50">
+            <span className="font-rubik text-2xl font-semibold text-zinc-50">
               Oh My Dog.
             </span>
           </div>

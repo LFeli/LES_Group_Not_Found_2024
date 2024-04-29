@@ -104,6 +104,10 @@ module.exports = {
           900: '#191923',
         },
       },
+      fontFamily: {
+        rubik: "Rubik, 'sans-serif'",
+        karla: "Karla, 'sans-serif'",
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
