@@ -14,7 +14,7 @@ export function HeaderApp() {
           <span className="text-2xl font-semibold">Oh My Dog.</span>
         </div>
 
-        <nav className="flex items-center space-x-12">
+        <nav className="relative flex items-center space-x-12">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/postagens">Postagens</NavLink>
           <NavLink to="/faq">FAQ</NavLink>
