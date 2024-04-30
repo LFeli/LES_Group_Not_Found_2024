@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 
-export function AuthenticatedHome() {
+export function AuthHome() {
   return (
     <>
       <Helmet title="Home Autenticada" />

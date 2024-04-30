@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet-async'
 
-import { BenefitsApp } from '@/components/app/benefits-app'
-import { CtaApp } from '@/components/app/cta'
-import { FrequentlyAskedQuestionsApp } from '@/components/app/frequently-asked-questions'
-import { ReasonsSponsorApp } from '@/components/app/reasons-sponsor-app'
+import { BenefitsApp } from '@/components/app/home/benefits-app'
+import { CtaApp } from '@/components/app/home/cta'
+import { FrequentlyAskedQuestionsApp } from '@/components/app/home/frequently-asked-questions'
+import { ReasonsSponsorApp } from '@/components/app/home/reasons-sponsor-app'
 
 export function Home() {
   return (

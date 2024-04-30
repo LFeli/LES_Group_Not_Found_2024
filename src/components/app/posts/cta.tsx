@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import ctaPhoto from '@/assets/app/home/cta-posts.jpg'
-
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 
 export function CtaPostsApp() {
   return (

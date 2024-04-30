@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 
-import { CtaPostsApp } from '@/components/app/cta-posts'
+import { CtaPostsApp } from '@/components/app/posts/cta'
 
 export function Posts() {
   return (
