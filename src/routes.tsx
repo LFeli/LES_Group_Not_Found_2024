@@ -10,6 +10,7 @@ import { AdminLayout } from './pages/_layouts/admin'
 import { RegisterLayout } from './pages/_layouts/register'
 import { AdminHome } from './pages/admin/home'
 import { Faq } from './pages/app/faq'
+import { Posts } from './pages/app/posts'
 import { PrivateRoutes } from './private-routes'
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/postagens',
+        element: <Posts />,
       },
       {
         path: '/faq',
