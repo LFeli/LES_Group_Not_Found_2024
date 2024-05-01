@@ -9,6 +9,7 @@ import { SignUp } from '@/pages/register/sign-up'
 import { AdminLayout } from './pages/_layouts/admin'
 import { RegisterLayout } from './pages/_layouts/register'
 import { AdminHome } from './pages/admin/home'
+import { Contact } from './pages/app/contact'
 import { Faq } from './pages/app/faq'
 import { Posts } from './pages/app/posts'
 import { AuthHome } from './pages/auth/home'
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: '/faq',
         element: <Faq />,
+      },
+      {
+        path: '/contato',
+        element: <Contact />,
       },
     ],
   },
