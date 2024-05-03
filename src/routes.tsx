@@ -13,7 +13,7 @@ import { Contact } from './pages/app/contact'
 import { Faq } from './pages/app/faq'
 import { Posts } from './pages/app/posts'
 import { AuthHome } from './pages/auth/home'
-import { PrivateRoutes } from './private-routes'
+import { PrivateRoute } from './private-route'
 
 export const router = createBrowserRouter([
   // No-Authenticated User routes
@@ -62,8 +62,8 @@ export const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       {
-        path: 'admin/',
-        element: <PrivateRoutes element={<AdminHome />} />,
+        path: '/admin/',
+        element: <PrivateRoute element={<AdminHome />} routeType={'Admin'} />,
       },
     ],
   },
@@ -74,8 +74,8 @@ export const router = createBrowserRouter([
     element: <AuthLayout />,
     children: [
       {
-        path: 'app/',
-        element: <AuthHome />,
+        path: '/app/',
+        element: <PrivateRoute element={<AuthHome />} routeType={'Usuario'} />,
       },
     ],
   },
