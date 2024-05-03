@@ -1,22 +1,22 @@
+import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { postSignIn } from '@/api/post-sign-in'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-
-const signInForm = z.object({
-  email: z.string().email(),
-  password: z.number().min(6),
-})
+import { signInForm } from '@/schemas/sign-in-schema'
+import { setCookie } from '@/utils/cookie'
 
 type SignInForm = z.infer<typeof signInForm>
 
 export function SignIn() {
   const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -28,10 +28,17 @@ export function SignIn() {
     },
   })
 
-  async function handleSign() {
+  const { mutateAsync: authenticate } = useMutation({
+    mutationFn: postSignIn,
+    onSuccess: (data) => {
+      setCookie({ name: 'omdAuth', value: data })
+    },
+  })
+
+  async function handleSign({ email, password }: SignInForm) {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      toast.success('Email válido.', {})
+      await authenticate({ email, password })
+      navigate('/app/')
     } catch {
       toast.error('Credenciais inválidas.')
     }
