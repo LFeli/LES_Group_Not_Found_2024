@@ -2,7 +2,7 @@ import { ContactFormApp } from './form'
 
 export function CtaContactApp() {
   return (
-    <section className="flex items-center justify-between pb-32 pt-10">
+    <section className="flex items-start justify-between pb-32 pt-10">
       <div className="max-w-[600px]">
         <h1 className="font-rubik text-8xl font-semibold">
           Transformes vidas,
