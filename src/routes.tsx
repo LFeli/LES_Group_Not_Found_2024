@@ -12,6 +12,7 @@ import { AdminHome } from './pages/admin/home'
 import { Contact } from './pages/app/contact'
 import { Faq } from './pages/app/faq'
 import { Posts } from './pages/app/posts'
+import { Sponsor } from './pages/app/sponsor'
 import { AuthHome } from './pages/auth/home'
 import { PrivateRoute } from './private-route'
 
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: '/faq',
         element: <Faq />,
+      },
+      {
+        path: '/patrocinador',
+        element: <Sponsor />,
       },
       {
         path: '/contato',
@@ -56,18 +61,6 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // Admin layout
-  {
-    path: '/',
-    element: <AdminLayout />,
-    children: [
-      {
-        path: '/admin/',
-        element: <PrivateRoute element={<AdminHome />} routeType={'Admin'} />,
-      },
-    ],
-  },
-
   // Authenticated User routes
   {
     path: '/',
@@ -76,6 +69,18 @@ export const router = createBrowserRouter([
       {
         path: '/app/',
         element: <PrivateRoute element={<AuthHome />} routeType={'Usuario'} />,
+      },
+    ],
+  },
+
+  // Admin layout
+  {
+    path: '/',
+    element: <AdminLayout />,
+    children: [
+      {
+        path: '/admin/',
+        element: <PrivateRoute element={<AdminHome />} routeType={'Admin'} />,
       },
     ],
   },
