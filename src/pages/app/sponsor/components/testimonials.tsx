@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 
-export function TestimonialsSponsorApp() {
+export function Testimonials() {
   return (
     <div className="flex flex-col items-center justify-center gap-20 pb-8">
       <div className="max-w-[1000px] text-center">

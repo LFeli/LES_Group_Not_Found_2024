@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
 
-export function CtaSponsorApp() {
+export function Cta() {
   return (
     <div className="min-h-[940px] bg-accent-foreground bg-[url(src/assets/app/sponsor/cta.jpg)] bg-cover bg-no-repeat">
       <div className="container flex min-h-[940px] max-w-[1060px] flex-col items-center justify-center px-6 text-center">

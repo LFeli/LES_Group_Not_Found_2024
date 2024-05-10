@@ -1,6 +1,6 @@
 import { Globe, LineChart, Send, ShieldCheck } from 'lucide-react'
 
-export function ReasonForTurnSponsorApp() {
+export function ReasonForTurnSponsor() {
   return (
     <section className="flex flex-col items-center justify-center gap-20">
       <div className="max-w-5xl text-center">

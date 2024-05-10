@@ -2,7 +2,7 @@ import { Check } from 'lucide-react'
 
 import benefitsPhoto from '@/assets/app/sponsor/benefits.jpg'
 
-export function BenefitsForTurnSponsorApp() {
+export function Benefits() {
   return (
     <section className="flex items-start justify-between ">
       <div className="max-w-[660px]">
