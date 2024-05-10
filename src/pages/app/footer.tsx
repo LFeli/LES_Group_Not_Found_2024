@@ -2,7 +2,7 @@ import { PawPrint } from 'lucide-react'
 
 import { FooterAppLinks } from './footer-links'
 
-export function FooterApp() {
+export function Footer() {
   return (
     <footer className="bg-zinc-800 py-12">
       <div className="container flex max-w-screen-2xl items-start justify-between px-6">

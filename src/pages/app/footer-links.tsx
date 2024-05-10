@@ -1,7 +1,7 @@
 import { ChevronsUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 
 export function FooterAppLinks() {
   return (
@@ -159,7 +159,7 @@ export function FooterAppLinks() {
 
       <article className="flex items-end justify-center">
         <div className="flex items-center gap-4">
-          <span className="font-rubik block text-base font-medium text-zinc-200">
+          <span className="block font-rubik text-base font-medium text-zinc-200">
             Voltar ao topo
           </span>
 
