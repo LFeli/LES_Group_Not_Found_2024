@@ -1,6 +1,6 @@
 import { Cat, HandHeart, Sparkles, TicketPercent } from 'lucide-react'
 
-export function BenefitsApp() {
+export function Benefits() {
   return (
     <section className="flex flex-col items-center justify-center gap-20 pb-32 pt-10">
       <div className="text-center">

@@ -1,6 +1,6 @@
 import { Handshake, Heart, Send } from 'lucide-react'
 
-export function ReasonsSponsorApp() {
+export function ReasonsSponsor() {
   return (
     <section className="flex flex-col items-center justify-center gap-20 pb-32 pt-10">
       <div className="max-w-5xl text-center">

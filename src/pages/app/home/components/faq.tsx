@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 
-export function FrequentlyAskedQuestionsApp() {
+export function Faq() {
   return (
     <section className="flex flex-col items-center justify-center gap-20 pb-32 pt-10">
       <div className="text-center">
