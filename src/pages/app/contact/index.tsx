@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 
-import { CtaContactApp } from '@/components/app/contact/cta'
+import { Cta } from './components/cta'
 
 export function Contact() {
   return (
@@ -8,7 +8,7 @@ export function Contact() {
       <Helmet title="Dúvidas frequentes" />
 
       <div className="container max-w-screen-2xl px-6">
-        <CtaContactApp />
+        <Cta />
       </div>
     </main>
   )

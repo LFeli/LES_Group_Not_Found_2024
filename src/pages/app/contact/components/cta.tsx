@@ -1,6 +1,6 @@
-import { ContactFormApp } from './form'
+import { Form } from './form'
 
-export function CtaContactApp() {
+export function Cta() {
   return (
     <section className="flex items-start justify-between pb-32 pt-10">
       <div className="max-w-[600px]">
@@ -15,7 +15,7 @@ export function CtaContactApp() {
         </p>
       </div>
 
-      <ContactFormApp />
+      <Form />
     </section>
   )
 }

@@ -25,3 +25,5 @@ export const contactSchema = z.object({
   phone: phoneSchema,
   message: messageSchema,
 })
+
+export type ContactFormSchema = z.infer<typeof contactSchema>
