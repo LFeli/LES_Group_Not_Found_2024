@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 
-import { CtaPostsApp } from '@/components/app/posts/cta'
-import { PostsApp } from '@/components/app/posts/posts-app'
+import { Cta } from './components/cta'
+import { PostsList } from './components/posts-list'
 
 export function Posts() {
   return (
@@ -9,8 +9,8 @@ export function Posts() {
       <Helmet title="Postagens" />
 
       <div className="container max-w-screen-2xl px-6">
-        <CtaPostsApp />
-        <PostsApp />
+        <Cta />
+        <PostsList />
       </div>
     </main>
   )

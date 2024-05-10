@@ -1,20 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { z } from 'zod'
 
 import userExample from '@/assets/app/home/user-example.jpg'
-import { postTabSchema } from '@/schemas/post-tab-schema'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Progress } from '@/components/ui/progress'
+import { TabsContent } from '@/components/ui/tabs'
 
-import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { Label } from './ui/label'
-import { Progress } from './ui/progress'
-import { TabsContent } from './ui/tabs'
+import { postTabSchema, PostTabSchemaForm } from '../schemas/post-schema'
 
 export function PostTab() {
-  type PostTabSchemaForm = z.infer<typeof postTabSchema>
-
   const {
     register,
     handleSubmit,
@@ -24,7 +21,7 @@ export function PostTab() {
     resolver: zodResolver(postTabSchema),
   })
 
-  function handlePostTabSubmit(data: PostTabSchemaForm) {
+  function onFormSubmit(data: PostTabSchemaForm) {
     try {
       console.log(data)
       reset()
@@ -96,10 +93,7 @@ export function PostTab() {
             receber o voucher.
           </span>
 
-          <form
-            onSubmit={handleSubmit(handlePostTabSubmit)}
-            className="space-y-4"
-          >
+          <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
             <article className="space-y-2">
               <Label htmlFor="value">Valor</Label>
               <Input id="value" type="text" {...register('value')} />

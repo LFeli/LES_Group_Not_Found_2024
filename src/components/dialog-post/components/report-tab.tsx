@@ -1,12 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { z } from 'zod'
 
-import { reporTabSchema } from '@/schemas/report-tab-schema'
-
-import { Button } from './ui/button'
-import { Label } from './ui/label'
+import { Button } from '@/components/ui/button'
+import { Label } from '@/components/ui/label'
 import {
   Select,
   SelectContent,
@@ -15,13 +12,13 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from './ui/select'
-import { TabsContent } from './ui/tabs'
-import { Textarea } from './ui/textarea'
+} from '@/components/ui/select'
+import { TabsContent } from '@/components/ui/tabs'
+import { Textarea } from '@/components/ui/textarea'
+
+import { reporTabSchema, ReportTabSchemaForm } from '../schemas/report-schema'
 
 export function ReportTab() {
-  type ReportTabSchemaForm = z.infer<typeof reporTabSchema>
-
   const {
     handleSubmit,
     control,
@@ -31,7 +28,7 @@ export function ReportTab() {
     resolver: zodResolver(reporTabSchema),
   })
 
-  function handleReporTabSubmit(data: ReportTabSchemaForm) {
+  function onFormSubmit(data: ReportTabSchemaForm) {
     try {
       console.log(data)
       reset()
@@ -113,10 +110,7 @@ export function ReportTab() {
             </span>
           </div>
 
-          <form
-            onSubmit={handleSubmit(handleReporTabSubmit)}
-            className="space-y-4"
-          >
+          <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
             <article className="space-y-2">
               <Label htmlFor="reason">Por que está denunciando?</Label>
               <Controller

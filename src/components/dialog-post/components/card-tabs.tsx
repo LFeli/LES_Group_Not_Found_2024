@@ -1,8 +1,9 @@
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+
 import { PostTab } from './post-tab'
 import { ReportTab } from './report-tab'
-import { Tabs, TabsList, TabsTrigger } from './ui/tabs'
 
-export function CardPost() {
+export function CardTabs() {
   return (
     <Tabs defaultValue="post" className="w-full max-w-2xl space-y-2 pt-8">
       <TabsList className="grid w-full grid-cols-2">
@@ -17,5 +18,3 @@ export function CardPost() {
     </Tabs>
   )
 }
-
-// Terminar o tabs e fazer o trigger do dialog

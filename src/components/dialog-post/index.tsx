@@ -1,10 +1,11 @@
 import { PiggyBank } from 'lucide-react'
 
 import userExample from '@/assets/app/home/user-example.jpg'
-import { CardPost } from '@/components/card-post'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 
-export function CardApp() {
+import { CardTabs } from './components/card-tabs'
+
+export function DialogPost() {
   return (
     <Dialog>
       <DialogTrigger>
@@ -44,7 +45,7 @@ export function CardApp() {
       </DialogTrigger>
 
       <DialogContent className="max-h-[80vh] overflow-auto p-4">
-        <CardPost />
+        <CardTabs />
       </DialogContent>
     </Dialog>
   )

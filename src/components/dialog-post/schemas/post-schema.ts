@@ -19,3 +19,5 @@ export const postTabSchema = z.object({
   pixKey: pixKeySchema,
   proofPix: proofPixSchema,
 })
+
+export type PostTabSchemaForm = z.infer<typeof postTabSchema>

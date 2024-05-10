@@ -1,10 +1,10 @@
-import { CardApp } from './card-app'
+import { DialogPost } from '@/components/dialog-post'
 
-export function PostsApp() {
+export function PostsList() {
   return (
     <section className="grid grid-cols-3 gap-10 pb-32">
       {Array.from({ length: 9 }).map((_, index) => (
-        <CardApp key={index} />
+        <DialogPost key={index} />
       ))}
     </section>
   )

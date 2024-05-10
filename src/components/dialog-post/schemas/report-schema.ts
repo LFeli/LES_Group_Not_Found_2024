@@ -17,3 +17,5 @@ export const reporTabSchema = z.object({
   reason: reasonReportSchema,
   message: messageReportSchema,
 })
+
+export type ReportTabSchemaForm = z.infer<typeof reporTabSchema>

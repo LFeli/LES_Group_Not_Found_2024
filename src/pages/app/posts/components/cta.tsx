@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ctaPhoto from '@/assets/app/home/cta-posts.jpg'
 import { Button } from '@/components/ui/button'
 
-export function CtaPostsApp() {
+export function Cta() {
   return (
     <section className="flex items-center justify-between pb-32 pt-10">
       <div className="max-w-[600px]">
