@@ -34,7 +34,7 @@ export function Form() {
     },
   })
 
-  async function handleSign({ email, password }: SignInFormSchema) {
+  async function onFormSubmit({ email, password }: SignInFormSchema) {
     try {
       await authenticateFn({ email, password })
       navigate('/app/')
@@ -44,7 +44,7 @@ export function Form() {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleSign)} className="space-y-6">
+    <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
       <article className="space-y-2">
         <Label htmlFor="email" className="font-rubik">
           Seu e-mail

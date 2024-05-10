@@ -11,10 +11,10 @@ import { Home } from '@/pages/app/home'
 import { Posts } from '@/pages/app/posts'
 import { Sponsor } from '@/pages/app/sponsor'
 import { AuthHome } from '@/pages/auth/home'
-import { SignUp } from '@/pages/register/sign-up'
 import { PrivateRoute } from '@/private-route'
 
 import { SignIn } from './pages/register/sign-in'
+import { SignUp } from './pages/register/sign-up'
 
 export const router = createBrowserRouter([
   // No-Authenticated User routes
