@@ -2,6 +2,8 @@ import { PawPrint } from 'lucide-react'
 
 import { NavLink } from '@/components/nav-links'
 
+import { UserMenu } from './user-menu'
+
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b-2 border-border/60 bg-yellow-50/95 font-rubik backdrop-blur supports-[backdrop-filter]:bg-yellow-50/80">
@@ -19,7 +21,7 @@ export function Header() {
           <NavLink to="/app/doacoes">Doações</NavLink>
         </nav>
 
-        <span>MENU AQUI</span>
+        <UserMenu />
       </div>
     </header>
   )
