@@ -16,11 +16,6 @@ export function AuthHome() {
     <>
       <Helmet title="Home Autenticada" />
       <span>Home Autenticada</span>
-      {/* <button
-        onClick={() => {
-          deleteCookie({ name: 'omdAuth' })
-        }}
-      >Botão de </button> */}
 
       <Button onClick={handleLogOut}>Logout do usuário</Button>
     </>
