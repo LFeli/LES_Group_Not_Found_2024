@@ -1,23 +1,19 @@
 import { Helmet } from 'react-helmet-async'
-import { useNavigate } from 'react-router-dom'
 
-import { Button } from '@/components/ui/button'
-import { deleteCookie } from '@/utils/cookie'
+import { Donations } from './components/donations'
+import { MyPosts } from './components/my-posts'
+import { QuickLinks } from './components/quick-links'
 
 export function AuthHome() {
-  const navigate = useNavigate()
-
-  function handleLogOut() {
-    deleteCookie({ name: 'omdAuth' })
-    navigate('/login', { replace: true })
-  }
-
   return (
     <>
       <Helmet title="Home Autenticada" />
-      <span>Home Autenticada</span>
 
-      <Button onClick={handleLogOut}>Logout do usuário</Button>
+      <div className="container max-w-screen-2xl px-6">
+        <QuickLinks />
+        <MyPosts />
+        <Donations />
+      </div>
     </>
   )
 }
