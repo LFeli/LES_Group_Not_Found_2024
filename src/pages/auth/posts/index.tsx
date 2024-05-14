@@ -8,7 +8,7 @@ export function PostAuth() {
     <main className="flex-1 font-karla">
       <Helmet title="Postagens" />
 
-      <div className="container max-w-screen-2xl px-6">
+      <div className="container max-w-screen-2xl px-6 py-16">
         <Cta />
         <PostsList />
       </div>
