@@ -13,6 +13,7 @@ import { Sponsor } from '@/pages/app/sponsor'
 import { PrivateRoute } from '@/private-route'
 
 import { AuthHome } from './pages/auth/home'
+import { PostAuth } from './pages/auth/posts'
 import { SignIn } from './pages/register/sign-in'
 import { SignUp } from './pages/register/sign-up'
 
@@ -69,6 +70,11 @@ export const router = createBrowserRouter([
       {
         path: '/app/',
         element: <PrivateRoute element={<AuthHome />} routeType={'Usuario'} />,
+      },
+
+      {
+        path: '/app/postagens',
+        element: <PrivateRoute element={<PostAuth />} routeType={'Usuario'} />,
       },
     ],
   },
