@@ -14,6 +14,7 @@ import { PrivateRoute } from '@/private-route'
 
 import { AuthHome } from './pages/auth/home'
 import { PostAuth } from './pages/auth/posts'
+import { SponsorAuth } from './pages/auth/sponsor'
 import { SignIn } from './pages/register/sign-in'
 import { SignUp } from './pages/register/sign-up'
 
@@ -69,12 +70,36 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/app/',
-        element: <PrivateRoute element={<AuthHome />} routeType={'Usuario'} />,
+        element: (
+          <PrivateRoute
+            element={<AuthHome />}
+            routeType={'Usuario' || 'Patrocinador'}
+          />
+        ),
       },
 
       {
         path: '/app/postagens',
-        element: <PrivateRoute element={<PostAuth />} routeType={'Usuario'} />,
+        element: (
+          <PrivateRoute
+            element={<PostAuth />}
+            routeType={'Usuario' || 'Patrocinador'}
+          />
+        ),
+      },
+
+      {
+        path: '/app/patrocinador',
+        element: (
+          <PrivateRoute element={<SponsorAuth />} routeType={'Usuario'} />
+        ),
+      },
+
+      {
+        path: '/app/patrocinador',
+        element: (
+          <PrivateRoute element={<AuthHome />} routeType={'Patrocinador'} />
+        ),
       },
     ],
   },
