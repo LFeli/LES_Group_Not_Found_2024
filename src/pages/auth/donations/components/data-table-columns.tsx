@@ -4,6 +4,7 @@ import { format } from 'date-fns'
 import { DataTableColumnHeader } from '@/components/data-table-column-header'
 
 import { DonationsDataTableSchema } from '../schemas/data-donations-schema'
+import { DataTableRowActions } from './data-table-row-actions'
 
 export const columns: ColumnDef<DonationsDataTableSchema>[] = [
   {
@@ -24,7 +25,7 @@ export const columns: ColumnDef<DonationsDataTableSchema>[] = [
       <DataTableColumnHeader column={column} title="Título" />
     ),
     cell: ({ row }) => (
-      <div className="flex-1 truncate font-medium">
+      <div className="min-w-96 truncate font-medium">
         <span>{row.getValue('title')}</span>
       </div>
     ),
@@ -57,5 +58,10 @@ export const columns: ColumnDef<DonationsDataTableSchema>[] = [
         </span>
       </div>
     ),
+  },
+
+  {
+    id: 'actions',
+    cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ]
