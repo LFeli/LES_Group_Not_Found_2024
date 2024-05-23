@@ -12,6 +12,7 @@ import { Posts } from '@/pages/app/posts'
 import { Sponsor } from '@/pages/app/sponsor'
 import { PrivateRoute } from '@/private-route'
 
+import { DonationsAuth } from './pages/auth/donations'
 import { AuthHome } from './pages/auth/home'
 import { PostAuth } from './pages/auth/posts'
 import { SponsorAuth } from './pages/auth/sponsor'
@@ -102,6 +103,16 @@ export const router = createBrowserRouter([
           <PrivateRoute
             element={<SponsorVoucher />}
             routeType={'Patrocinador'}
+          />
+        ),
+      },
+
+      {
+        path: '/app/doacoes',
+        element: (
+          <PrivateRoute
+            element={<DonationsAuth />}
+            routeType={'Usuario' || 'Patrocinador'}
           />
         ),
       },

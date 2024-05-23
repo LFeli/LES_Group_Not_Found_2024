@@ -18,7 +18,7 @@ export function Header() {
           <NavLink to="/app/">Home</NavLink>
           <NavLink to="/app/postagens">Postagens</NavLink>
           <NavLink to="/app/patrocinador">Patrocinador</NavLink>
-          <NavLink to="/app/doacoes">Doações</NavLink>
+          <NavLink to="/app/doacoes">Contribuições</NavLink>
         </nav>
 
         <UserMenu />
