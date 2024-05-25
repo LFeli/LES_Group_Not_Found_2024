@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
 
-import { getCookie } from './utils/cookie'
+import { useAuth } from './context/auth-context'
 
 interface PrivateRoutesProps {
   element: ReactNode
@@ -9,9 +9,10 @@ interface PrivateRoutesProps {
 }
 
 export function PrivateRoute({ element, routeType }: PrivateRoutesProps) {
-  const cookie = getCookie({ name: 'omdAuth' })
+  const { user } = useAuth()
+  console.log(user)
 
-  return cookie && cookie.tipoUsuario === routeType ? (
+  return user && user.userType === routeType ? (
     element
   ) : (
     <Navigate to={'/login'} />

@@ -10,8 +10,14 @@ import { toast } from 'sonner'
 
 import { signIn, signInBody, signInResponse } from '@/api/sign-in'
 
+interface User {
+  idUser: number
+  name: string
+  userType: string
+}
+
 interface AuthContextType {
-  user: signInResponse | undefined
+  user: User | undefined
   login: (data: signInBody) => Promise<void>
   isLogin: boolean
   signOut: () => void
@@ -33,13 +39,19 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<signInResponse | undefined>(undefined)
+  const [user, setUser] = useState<User | undefined>(undefined)
 
   const { mutateAsync: signInFn, isPending: isLogin } = useMutation({
     mutationFn: signIn,
-    onSuccess(data) {
-      setUser(data)
-      localStorage.setItem('user', JSON.stringify(data))
+    onSuccess(data: signInResponse) {
+      const userData = {
+        idUser: data.idUsuario,
+        name: data.nome,
+        userType: data.tipoUsuario,
+      }
+
+      setUser(userData)
+      localStorage.setItem('user', JSON.stringify(userData))
     },
   })
 
@@ -51,17 +63,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [])
 
   async function login({ email, password }: signInBody) {
-    try {
-      await signInFn({
-        email,
-        password,
-      })
-      toast.success('Login efetuado com sucesso!')
-    } catch {
-      toast.error(
-        'Ocorreu um erro ao efetuar o login, por favor tente novamente.',
-      )
-    }
+    await signInFn({
+      email,
+      password,
+    })
   }
 
   function signOut() {

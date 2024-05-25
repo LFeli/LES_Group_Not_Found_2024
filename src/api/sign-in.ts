@@ -6,9 +6,9 @@ export interface signInBody {
 }
 
 export interface signInResponse {
-  idUser: number
-  name: string
-  userType: string
+  idUsuario: number
+  nome: string
+  tipoUsuario: string
 }
 
 export async function signIn({ email, password }: signInBody) {

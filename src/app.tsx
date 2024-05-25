@@ -6,6 +6,7 @@ import { RouterProvider } from 'react-router-dom'
 
 import { Toaster } from './components/ui/sonner'
 import { TooltipProvider } from './components/ui/tooltip'
+import { AuthProvider } from './context/auth-context'
 import { queryClient } from './lib/react-query'
 import { router } from './routes'
 
@@ -17,7 +18,9 @@ export function App() {
       <Toaster richColors />
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <RouterProvider router={router} />
+          <AuthProvider>
+            <RouterProvider router={router} />
+          </AuthProvider>
         </TooltipProvider>
       </QueryClientProvider>
     </HelmetProvider>
