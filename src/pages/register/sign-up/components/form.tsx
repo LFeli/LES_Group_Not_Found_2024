@@ -176,8 +176,12 @@ export function Form() {
         </div>
       </div>
 
-      <Button type="submit" disabled={isSubmitting} className="w-full">
-        Fazer login
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full bg-blue-800 hover:bg-blue-700"
+      >
+        Criar conta
       </Button>
     </form>
   )

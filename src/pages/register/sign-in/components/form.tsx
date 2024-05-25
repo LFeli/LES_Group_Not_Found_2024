@@ -76,7 +76,10 @@ export function Form() {
         )}
       </article>
 
-      <Button disabled={isSubmitting || isLogin} className="w-full">
+      <Button
+        disabled={isSubmitting || isLogin}
+        className="w-full bg-blue-800 hover:bg-blue-700"
+      >
         Fazer login
       </Button>
     </form>
