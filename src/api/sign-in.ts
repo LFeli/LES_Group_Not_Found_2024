@@ -6,17 +6,16 @@ export interface signInBody {
 }
 
 export interface signInResponse {
-  idUsuario: number
-  nome: string
-  tipoUsuario: string
+  idUser: number
+  name: string
+  userType: string
 }
 
-export async function postSignIn({ email, password }: signInBody) {
+export async function signIn({ email, password }: signInBody) {
   const response = await api.post<signInResponse>('/Usuarios/LoginUsuario', {
     email,
     senha: password,
   })
 
-  console.log(response)
   return response.data
 }
