@@ -40,6 +40,15 @@ export function useAuth() {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | undefined>(undefined)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user')
+    if (storedUser) {
+      setUser(JSON.parse(storedUser))
+    }
+    setLoading(false) // Indica que a verificação de autenticação foi concluída
+  }, [])
 
   const { mutateAsync: signInFn, isPending: isLogin } = useMutation({
     mutationFn: signIn,
@@ -55,13 +64,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     },
   })
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) {
-      setUser(JSON.parse(storedUser))
-    }
-  }, [])
-
   async function login({ email, password }: signInBody) {
     await signInFn({
       email,
@@ -73,6 +75,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUser(undefined)
     localStorage.removeItem('user')
     toast.success('Logout efetuado com sucesso!')
+  }
+
+  // Se a verificação ainda estiver em andamento, mostra um indicador de carregamento
+  if (loading) {
+    return <div></div>
   }
 
   return (
