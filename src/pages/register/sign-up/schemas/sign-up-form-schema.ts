@@ -4,13 +4,6 @@ const nameSchema = z
   .string({ required_error: 'Preencha o campo nome' })
   .min(1, { message: 'Nome é um campo obrigatório' })
 
-const emailSchema = z
-  .string({ required_error: 'Preencha o campo e-mail' })
-  .min(1, { message: 'E-mail é um campo obrigatório' })
-  .email({
-    message: 'Formato de e-mail inválido, por favor insira um e-mail válido',
-  })
-
 const cpfSchema = z
   .string({ required_error: 'Preencha o campo CPF' })
   .min(1, { message: 'O campo CPF e obrigatório' })
@@ -19,10 +12,34 @@ const cpfSchema = z
     message: 'CPF inválido',
   })
 
-const dateOfBirthSchema = z.date({
-  required_error: 'Preencha o campo uma data de nascimento',
-})
-// .min(1, { message: 'O campo data de nascimento e obrigatório' })
+const emailSchema = z
+  .string({ required_error: 'Preencha o campo e-mail' })
+  .min(1, { message: 'E-mail é um campo obrigatório' })
+  .email({
+    message: 'Formato de e-mail inválido, por favor insira um e-mail válido',
+  })
+
+const phoneSchema = z
+  .string({ required_error: 'Preencha o campo telefone' })
+  .min(1, { message: 'O campo Telefone e obrigatório' })
+  .regex(/^(\(\d{2}\)\s)?\d{4,5}-\d{4}$/, {
+    message:
+      'Telefone inválido, formato esperado: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX',
+  })
+
+const dateOfBirthSchema = z
+  .string({
+    required_error: 'Preencha o campo uma data de nascimento',
+  })
+  .min(1, { message: 'O campo data de nascimento e obrigatório' })
+  .refine(
+    (value) => {
+      // Regex para permitir apenas números e barras
+      const regex = /^\d{2}\/\d{2}\/\d{4}$/
+      return regex.test(value)
+    },
+    { message: 'Insira a data de nascimento no formato dd/MMMM/yyyy' },
+  )
 
 const addressSchema = z
   .string({ required_error: 'Preencha o campo endereço' })
@@ -44,9 +61,9 @@ const numberSchema = z
   .string({ required_error: 'Preencha o campo número' })
   .min(1, { message: 'Número é um campo obrigatório' })
 
-const streetSchema = z
-  .string({ required_error: 'Preencha o campo Logadouro' })
-  .min(1, { message: 'Rua é um campo obrigatório' })
+// const streetSchema = z
+//   .string({ required_error: 'Preencha o campo Logadouro' })
+//   .min(1, { message: 'Rua é um campo obrigatório' })
 
 const cepSchema = z
   .string({ required_error: 'Preencha o campo CEP' })
@@ -60,30 +77,30 @@ const passwordSchema = z
   .min(1, { message: 'Senha é um campo obrigatório' })
   .min(8, { message: 'Senha deve ter no mínimo 8 caracteres' })
 
-const confirmPasswordSchema = z
-  .string({ required_error: 'Insira uma confirmação de senha' })
-  .min(1, { message: 'Por favor confirme sua senha' })
-  .min(8, { message: 'Senha deve ter no mínimo 8 caracteres' })
+// const confirmPasswordSchema = z
+//   .string({ required_error: 'Insira uma confirmação de senha' })
+//   .min(1, { message: 'Por favor confirme sua senha' })
+//   .min(8, { message: 'Senha deve ter no mínimo 8 caracteres' })
 
-export const SignUpSchema = z
-  .object({
-    name: nameSchema,
-    email: emailSchema,
-    cpf: cpfSchema,
-    dateOfBirth: dateOfBirthSchema,
-    address: addressSchema,
-    city: citySchema,
-    state: stateSchema,
-    neighborhood: neighborhoodSchema,
-    number: numberSchema,
-    street: streetSchema,
-    cep: cepSchema,
-    password: passwordSchema,
-    confirmPassword: confirmPasswordSchema,
-  })
-  .refine((data) => data.confirmPassword !== data.password, {
-    path: ['confirmPassword'],
-    message: 'Senhas não coincidem',
-  })
+export const SignUpSchema = z.object({
+  name: nameSchema,
+  cpf: cpfSchema,
+  email: emailSchema,
+  phone: phoneSchema,
+  dateOfBirth: dateOfBirthSchema,
+  addressStreet: addressSchema,
+  addressNumber: numberSchema,
+  addressDistrict: neighborhoodSchema,
+  addressCep: cepSchema,
+  addressCity: citySchema,
+  addressState: stateSchema,
+  password: passwordSchema,
+  // street: streetSchema,
+  // confirmPassword: confirmPasswordSchema,
+})
+// .refine((data) => data.confirmPassword !== data.password, {
+//   path: ['confirmPassword'],
+//   message: 'Senhas não coincidem',
+// })
 
 export type SignUpFormSchema = z.infer<typeof SignUpSchema>

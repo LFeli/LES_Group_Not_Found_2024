@@ -1,35 +1,49 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import { CalendarIcon } from 'lucide-react'
-import { Controller, useForm } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
+import { signUp } from '@/api/sign-up'
 import { ErrorMessage } from '@/components/form-error-message'
 import { Button } from '@/components/ui/button'
-import { Calendar } from '@/components/ui/calendar'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
-import { cn } from '@/lib/utils'
 
 import { SignUpFormSchema, SignUpSchema } from '../schemas/sign-up-form-schema'
 
 export function Form() {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
-    control,
+    reset,
     formState: { isSubmitting, errors },
   } = useForm<SignUpFormSchema>({
     resolver: zodResolver(SignUpSchema),
   })
 
-  function onFormSubmit(data: SignUpFormSchema) {
-    console.log(data)
+  const { mutateAsync: signUpFn } = useMutation({
+    mutationFn: signUp,
+  })
+
+  async function onFormSubmit(data: SignUpFormSchema) {
+    try {
+      console.log(data)
+      await signUpFn(data)
+      reset()
+      toast.success('Usuário cadastrado com sucesso!', {
+        action: {
+          label: 'Login',
+          onClick: () => {
+            navigate(`/login?email=${data.email}`)
+          },
+        },
+      })
+    } catch {
+      toast.error('Erro ao cadastrar usuário.')
+    }
   }
 
   return (
@@ -37,7 +51,12 @@ export function Form() {
       <div className='<div className="h-full p-2">  max-h-[450px] space-y-6 overflow-y-auto'>
         <article className="mx-1 space-y-2">
           <Label htmlFor="name">Seu nome</Label>
-          <Input id="name" type="text" {...register('name')} />
+          <Input
+            type="text"
+            id="name"
+            {...register('name')}
+            disabled={isSubmitting}
+          />
           <ErrorMessage
             error={errors.name}
             placeholder="Insira o seu nome aqui."
@@ -46,7 +65,12 @@ export function Form() {
 
         <article className="mx-1 space-y-2">
           <Label htmlFor="email">Seu e-mail</Label>
-          <Input id="email" type="email" {...register('email')} />
+          <Input
+            type="email"
+            id="email"
+            {...register('email')}
+            disabled={isSubmitting}
+          />
           <ErrorMessage
             error={errors.email}
             placeholder="Insira o seu e-mail aqui."
@@ -55,51 +79,24 @@ export function Form() {
 
         <article className="mx-1 space-y-2">
           <Label htmlFor="cpf">Seu CPF</Label>
-          <Input id="cpf" type="text" {...register('cpf')} />
+          <Input
+            type="text"
+            id="cpf"
+            {...register('cpf')}
+            disabled={isSubmitting}
+          />
           <ErrorMessage error={errors.cpf} placeholder="Insira seu CPF aqui." />
         </article>
 
         <article className="mx-1 space-y-2">
           <Label htmlFor="dateOfBirth">Data de nascimento</Label>
-          <Controller
-            name="dateOfBirth"
-            control={control}
-            render={({ field }) => (
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={'outline'}
-                    className={cn(
-                      'w-full pl-3 text-left font-normal',
-                      !field.value && 'text-muted-foreground',
-                    )}
-                  >
-                    {field.value ? (
-                      format(field.value, "dd 'de' MMMM 'de' yyyy", {
-                        locale: ptBR,
-                      })
-                    ) : (
-                      <span>Selecione uma data</span>
-                    )}
-                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                  </Button>
-                </PopoverTrigger>
-
-                <PopoverContent className="w-full">
-                  <Calendar
-                    mode="single"
-                    locale={ptBR}
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date: Date) =>
-                      date > new Date() || date < new Date('1900-01-01')
-                    }
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-            )}
+          <Input
+            type="text"
+            id="dateOfBirth"
+            {...register('dateOfBirth')}
+            disabled={isSubmitting}
           />
+
           <ErrorMessage
             error={errors.dateOfBirth}
             placeholder="Insira sua Data de nascimento aqui."
@@ -107,62 +104,100 @@ export function Form() {
         </article>
 
         <article className="mx-1 space-y-2">
-          <Label htmlFor="cep">CEP</Label>
-          <Input id="cep" {...register('cep')} />
-          <ErrorMessage error={errors.cep} placeholder="Insira seu CEP aqui." />
-        </article>
-
-        <article className="mx-1 space-y-2">
-          <Label htmlFor="address">Endereço</Label>
-          <Input id="address" {...register('address')} />
+          <Label htmlFor="phone">Telefone</Label>
+          <Input
+            type="text"
+            id="phone"
+            {...register('phone')}
+            disabled={isSubmitting}
+          />
           <ErrorMessage
-            error={errors.address}
-            placeholder="Insira seu endereço aqui."
+            error={errors.phone}
+            placeholder="Insira seu telefone aqui."
           />
         </article>
 
         <article className="mx-1 space-y-2">
-          <Label htmlFor="neighborhood">Bairro</Label>
-          <Input id="neighborhood" {...register('neighborhood')} />
+          <Label htmlFor="addressCep">CEP</Label>
+          <Input
+            type="text"
+            id="addressCep"
+            {...register('addressCep')}
+            disabled={isSubmitting}
+          />
           <ErrorMessage
-            error={errors.neighborhood}
+            error={errors.addressCep}
+            placeholder="Insira seu CEP aqui."
+          />
+        </article>
+
+        <article className="mx-1 space-y-2">
+          <Label htmlFor="addressStreet">Rua</Label>
+          <Input
+            type="text"
+            id="addressStreet"
+            {...register('addressStreet')}
+            disabled={isSubmitting}
+          />
+          <ErrorMessage
+            error={errors.addressStreet}
+            placeholder="Insira seu Rua aqui."
+          />
+        </article>
+
+        <article className="mx-1 space-y-2">
+          <Label htmlFor="addressDistrict">Bairro</Label>
+          <Input
+            type="text"
+            id="addressDistrict"
+            {...register('addressDistrict')}
+            disabled={isSubmitting}
+          />
+          <ErrorMessage
+            error={errors.addressDistrict}
             placeholder="Insira seu bairro aqui."
           />
         </article>
 
         <article className="mx-1 space-y-2">
-          <Label htmlFor="number">Número</Label>
-          <Input id="number" {...register('number')} />
-          <ErrorMessage
-            error={errors.number}
-            placeholder="Insira o número aqui."
+          <Label htmlFor="addressNumber">Número</Label>
+          <Input
+            type="text"
+            id="addressNumber"
+            {...register('addressNumber')}
+            disabled={isSubmitting}
           />
-        </article>
-
-        <article className="mx-1 space-y-2">
-          <Label htmlFor="street">Logradouro</Label>
-          <Input id="street" {...register('street')} />
           <ErrorMessage
-            error={errors.street}
-            placeholder="Insira o logradouro aqui."
+            error={errors.addressNumber}
+            placeholder="Insira o número aqui."
           />
         </article>
 
         <div className="grid grid-cols-2">
           <article className="mx-1 space-y-2">
-            <Label htmlFor="city">Cidade</Label>
-            <Input id="city" {...register('city')} />
+            <Label htmlFor="addressCity">Cidade</Label>
+            <Input
+              type="text"
+              id="addressCity"
+              {...register('addressCity')}
+              disabled={isSubmitting}
+            />
             <ErrorMessage
-              error={errors.city}
+              error={errors.addressCity}
               placeholder="Insira sua cidade aqui."
             />
           </article>
 
           <article className="mx-1 space-y-2">
-            <Label htmlFor="state">Estado</Label>
-            <Input id="state" {...register('state')} />
+            <Label htmlFor="addressState">Estado</Label>
+            <Input
+              type="text"
+              id="addressState"
+              {...register('addressState')}
+              disabled={isSubmitting}
+            />
             <ErrorMessage
-              error={errors.state}
+              error={errors.addressState}
               placeholder="Insira seu estado aqui."
             />
           </article>
@@ -170,23 +205,15 @@ export function Form() {
 
         <article className="mx-1 space-y-2">
           <Label htmlFor="password">Seu senha</Label>
-          <Input id="password" type="password" {...register('password')} />
+          <Input
+            id="password"
+            type="password"
+            {...register('password')}
+            disabled={isSubmitting}
+          />
           <ErrorMessage
             error={errors.password}
             placeholder="Insira sua senha aqui."
-          />
-        </article>
-
-        <article className="mx-1 space-y-2">
-          <Label htmlFor="confirmPassword">Confirme sua senha</Label>
-          <Input
-            id="password"
-            type="confirmPassword"
-            {...register('confirmPassword')}
-          />
-          <ErrorMessage
-            error={errors.confirmPassword}
-            placeholder="Insira sua senha novamente aqui."
           />
         </article>
       </div>
