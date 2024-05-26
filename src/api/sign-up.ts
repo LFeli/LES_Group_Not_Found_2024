@@ -1,3 +1,5 @@
+import { format } from 'date-fns'
+
 import { api } from '@/lib/axios'
 
 export interface signUpBody {
@@ -19,7 +21,7 @@ export async function signUp(data: signUpBody) {
   await api.post('/Usuarios/InserirNovoUsuario', {
     nome: data.name,
     cpf: data.cpf,
-    dtNascimento: data.dateOfBirth,
+    dtNascimento: format(data.dateOfBirth, "dd'/'MMMM'/'yyyy"),
     celular: data.phone,
     email: data.email,
     senha: data.password,
