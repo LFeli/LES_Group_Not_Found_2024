@@ -6,7 +6,6 @@ import {
   useEffect,
   useState,
 } from 'react'
-import { toast } from 'sonner'
 
 import { signIn, signInBody, signInResponse } from '@/api/sign-in'
 
@@ -74,7 +73,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   function signOut() {
     setUser(undefined)
     localStorage.removeItem('user')
-    toast.success('Logout efetuado com sucesso!')
   }
 
   // Se a verificação ainda estiver em andamento, mostra um indicador de carregamento

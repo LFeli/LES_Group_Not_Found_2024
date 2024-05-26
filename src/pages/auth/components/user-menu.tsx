@@ -9,6 +9,7 @@ import {
   Plus,
 } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -19,22 +20,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { deleteCookie, getCookie } from '@/utils/cookie'
-
-const user = getCookie({ name: 'omdAuth' })
+import { useAuth } from '@/context/auth-context'
 
 export function UserMenu() {
+  const { user, signOut } = useAuth()
+
   const navigate = useNavigate()
-  function handleLogOut() {
-    deleteCookie({ name: 'omdAuth' })
+  async function handleLogOut() {
+    await signOut()
     navigate('/login', { replace: true })
+    toast.success('Logout efetuado com sucesso!')
   }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant={'outline'} className="group space-x-4 bg-transparent">
-          <span className="font-rubik text-base">Olá {user?.nome}</span>
+          <span className="font-rubik text-base">Olá {user?.name}</span>
 
           <ChevronDown className="duration-50000 transition-transform group-data-[state=open]:rotate-180" />
         </Button>
@@ -79,7 +81,7 @@ export function UserMenu() {
           </DropdownMenuItem>
         </Link>
 
-        <Link to={'/app/postagens'}>
+        <Link to={'/app/doacoes'}>
           <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
             <Flag className="h-4 w-4" />
             <span>Denúncias</span>
