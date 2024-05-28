@@ -1,10 +1,23 @@
+import { useQuery } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
+
+import { getUserDonations } from '@/api/get-user-donations'
+import { useAuth } from '@/context/auth-context'
 
 import { DataTable } from './components/data-table'
 import { columns } from './components/data-table-columns'
 import jsonData from './fake-data.json'
 
 export function DonationsAuth() {
+  const { user } = useAuth()
+
+  const { data: userDonations } = useQuery({
+    queryFn: () => getUserDonations({ userID: user?.idUser }),
+    queryKey: ['userDonations'],
+  })
+
+  console.log(userDonations)
+
   return (
     <main className="flex-1 font-karla">
       <Helmet title="Patrocinador" />

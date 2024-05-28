@@ -19,7 +19,6 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   const link = DonationsSchema.parse(row.original)
-  console.log('Output of link on DataTableRowActions component: ', link)
 
   return (
     <DropdownMenu>
