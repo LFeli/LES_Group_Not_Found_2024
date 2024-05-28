@@ -1,0 +1,20 @@
+[
+  {
+    "status": "ativo",
+    "title": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis.",
+    "reason": "Spam",
+    "createdAt": "2024-05-15T09:00:00.000Z"
+  },
+  {
+    "status": "ativo",
+    "title": "Item 9",
+    "reason": "Spam",
+    "createdAt": "2024-05-15T09:00:00.000Z"
+  },
+  {
+    "status": "ativo",
+    "title": "Item 9",
+    "reason": "Spam",
+    "createdAt": "2024-05-15T09:00:00.000Z"
+  } 
+]

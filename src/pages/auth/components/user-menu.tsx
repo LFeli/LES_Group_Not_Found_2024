@@ -81,7 +81,7 @@ export function UserMenu() {
           </DropdownMenuItem>
         </Link>
 
-        <Link to={'/app/doacoes'}>
+        <Link to={'/app/denuncia'}>
           <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
             <Flag className="h-4 w-4" />
             <span>Denúncias</span>

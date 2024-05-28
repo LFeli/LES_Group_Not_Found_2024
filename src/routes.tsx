@@ -15,6 +15,7 @@ import { PrivateRoute } from '@/private-route'
 import { DonationsAuth } from './pages/auth/donations'
 import { AuthHome } from './pages/auth/home'
 import { PostAuth } from './pages/auth/posts'
+import { ReportAuth } from './pages/auth/reports'
 import { SponsorAuth } from './pages/auth/sponsor'
 import { SponsorVoucher } from './pages/auth/sponsor/sponsor-voucher'
 import { SignIn } from './pages/register/sign-in'
@@ -112,6 +113,16 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute
             element={<DonationsAuth />}
+            routeType={'Usuario' || 'Patrocinador'}
+          />
+        ),
+      },
+
+      {
+        path: '/app/denuncia',
+        element: (
+          <PrivateRoute
+            element={<ReportAuth />}
             routeType={'Usuario' || 'Patrocinador'}
           />
         ),
