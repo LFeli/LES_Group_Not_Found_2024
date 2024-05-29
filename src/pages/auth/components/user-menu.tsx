@@ -60,7 +60,7 @@ export function UserMenu() {
         <DropdownMenuLabel>Navegação</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        <Link to={'/app/postagens'}>
+        <Link to={'/app/meus-posts'}>
           <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
             <Files className="h-4 w-4" />
             <span>Meus Posts</span>
@@ -74,7 +74,7 @@ export function UserMenu() {
           </DropdownMenuItem>
         </Link>
 
-        <Link to={'/app/postagens'}>
+        <Link to={'/app/doacoes'}>
           <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
             <Handshake className="h-4 w-4" />
             <span>Contribuições</span>

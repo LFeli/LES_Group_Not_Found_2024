@@ -18,6 +18,7 @@ import { PostAuth } from './pages/auth/posts'
 import { ReportAuth } from './pages/auth/reports'
 import { SponsorAuth } from './pages/auth/sponsor'
 import { SponsorVoucher } from './pages/auth/sponsor/sponsor-voucher'
+import { UserPosts } from './pages/auth/user-posts'
 import { SignIn } from './pages/register/sign-in'
 import { SignUp } from './pages/register/sign-up'
 
@@ -123,6 +124,16 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute
             element={<ReportAuth />}
+            routeType={'Usuario' || 'Patrocinador'}
+          />
+        ),
+      },
+
+      {
+        path: '/app/meus-posts',
+        element: (
+          <PrivateRoute
+            element={<UserPosts />}
             routeType={'Usuario' || 'Patrocinador'}
           />
         ),
