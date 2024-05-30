@@ -92,10 +92,17 @@ export const router = createBrowserRouter([
         ),
       },
 
+      // {
+      //   path: '/app/patrocinador',
+      //   element: (
+      //     <PrivateRoute element={<SponsorAuth />} routeType={'Usuario'} />
+      //   ),
+      // },
+
       {
         path: '/app/patrocinador',
         element: (
-          <PrivateRoute element={<SponsorAuth />} routeType={'Usuario'} />
+          <PrivateRoute element={<SponsorVoucher />} routeType={'Usuario'} />
         ),
       },
 

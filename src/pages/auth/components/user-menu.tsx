@@ -7,6 +7,7 @@ import {
   LogOut,
   Pencil,
   Plus,
+  TicketPercent,
 } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -85,6 +86,17 @@ export function UserMenu() {
           <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
             <Flag className="h-4 w-4" />
             <span>Denúncias</span>
+          </DropdownMenuItem>
+        </Link>
+
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel>Patrocinador</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+
+        <Link to={'/app/patrocinador'}>
+          <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
+            <TicketPercent className="h-4 w-4" />
+            <span>Gerenciar vouchers</span>
           </DropdownMenuItem>
         </Link>
 
