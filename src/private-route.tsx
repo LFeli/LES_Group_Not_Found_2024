@@ -5,14 +5,13 @@ import { useAuth } from './context/auth-context'
 
 interface PrivateRoutesProps {
   element: ReactNode
-  routeType: string
+  routeType: string[]
 }
 
 export function PrivateRoute({ element, routeType }: PrivateRoutesProps) {
   const { user } = useAuth()
-  console.log(user)
 
-  return user && user.userType === routeType ? (
+  return user && routeType.includes(user.userType) ? (
     element
   ) : (
     <Navigate to={'/login'} />

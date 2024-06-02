@@ -16,7 +16,6 @@ import { DonationsAuth } from './pages/auth/donations'
 import { AuthHome } from './pages/auth/home'
 import { PostAuth } from './pages/auth/posts'
 import { ReportAuth } from './pages/auth/reports'
-import { SponsorAuth } from './pages/auth/sponsor'
 import { SponsorVoucher } from './pages/auth/sponsor/sponsor-voucher'
 import { UserPosts } from './pages/auth/user-posts'
 import { SignIn } from './pages/register/sign-in'
@@ -74,75 +73,46 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/app/',
-        element: (
-          <PrivateRoute
-            element={<AuthHome />}
-            routeType={'Usuario' || 'Patrocinador'}
-          />
-        ),
+        element: <PrivateRoute element={<AuthHome />} routeType={['U', 'P']} />,
       },
 
       {
         path: '/app/postagens',
-        element: (
-          <PrivateRoute
-            element={<PostAuth />}
-            routeType={'Usuario' || 'Patrocinador'}
-          />
-        ),
+        element: <PrivateRoute element={<PostAuth />} routeType={['U', 'P']} />,
       },
-
-      // {
-      //   path: '/app/patrocinador',
-      //   element: (
-      //     <PrivateRoute element={<SponsorAuth />} routeType={'Usuario'} />
-      //   ),
-      // },
 
       {
         path: '/app/patrocinador',
         element: (
-          <PrivateRoute element={<SponsorVoucher />} routeType={'Usuario'} />
+          <PrivateRoute element={<SponsorVoucher />} routeType={['U']} />
         ),
       },
 
       {
         path: '/app/patrocinador',
         element: (
-          <PrivateRoute
-            element={<SponsorVoucher />}
-            routeType={'Patrocinador'}
-          />
+          <PrivateRoute element={<SponsorVoucher />} routeType={['P']} />
         ),
       },
 
       {
         path: '/app/doacoes',
         element: (
-          <PrivateRoute
-            element={<DonationsAuth />}
-            routeType={'Usuario' || 'Patrocinador'}
-          />
+          <PrivateRoute element={<DonationsAuth />} routeType={['U', 'P']} />
         ),
       },
 
       {
         path: '/app/denuncia',
         element: (
-          <PrivateRoute
-            element={<ReportAuth />}
-            routeType={'Usuario' || 'Patrocinador'}
-          />
+          <PrivateRoute element={<ReportAuth />} routeType={['U', 'P']} />
         ),
       },
 
       {
         path: '/app/meus-posts',
         element: (
-          <PrivateRoute
-            element={<UserPosts />}
-            routeType={'Usuario' || 'Patrocinador'}
-          />
+          <PrivateRoute element={<UserPosts />} routeType={['U', 'P']} />
         ),
       },
     ],
@@ -155,7 +125,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/admin/',
-        element: <PrivateRoute element={<AdminHome />} routeType={'Admin'} />,
+        element: <PrivateRoute element={<AdminHome />} routeType={['A']} />,
       },
     ],
   },
