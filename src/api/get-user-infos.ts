@@ -1,12 +1,14 @@
 import { api } from '@/lib/axios'
+import { getInitials } from '@/utils/get-name-initials'
 
 interface getUserInfosProps {
-  userID: string
+  userID: number | undefined
 }
 
 interface getUserInfosResponse {
   userID: string
   name: string
+  nameInitials: string
   cpf: string
   email: string
   phone: string
@@ -27,7 +29,7 @@ interface apiResponse {
   email: string
   celular: string
   urlFoto: string
-  dataNasc: string
+  dtNascimento: string
   logradouro: string
   numero: string
   bairro: string
@@ -40,11 +42,12 @@ function convertApiResponse(data: apiResponse): getUserInfosResponse {
   return {
     userID: data.idUsuario,
     name: data.nome,
+    nameInitials: getInitials(data.nome),
     cpf: data.cpf,
     email: data.email,
     phone: data.celular,
     photoURL: data.urlFoto,
-    dateOfBirth: data.dataNasc,
+    dateOfBirth: data.dtNascimento,
     addressStreet: data.logradouro,
     addressNumber: data.numero,
     addressDistrict: data.bairro,
