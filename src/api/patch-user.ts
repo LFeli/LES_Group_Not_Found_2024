@@ -1,7 +1,7 @@
 import { api } from '@/lib/axios'
 
-interface patchUserBody {
-  userID: string
+export interface patchUserBody {
+  userID: number | undefined
   name: string
   cpf: string
   email: string
@@ -17,7 +17,7 @@ interface patchUserBody {
 }
 
 interface apiBody {
-  idUsuario: string
+  idUsuario: number | undefined
   nome: string
   cpf: string
   email: string
@@ -30,6 +30,7 @@ interface apiBody {
   cep: string
   municipio: string
   estado: string
+  status: string
 }
 
 function convertApiBody(data: patchUserBody): apiBody {
@@ -47,14 +48,16 @@ function convertApiBody(data: patchUserBody): apiBody {
     cep: data.addressCep,
     municipio: data.addressCity,
     estado: data.addressState,
+    status: 'A',
   }
 }
 
 export async function patchUser(body: patchUserBody) {
   try {
     const apiBodyFormat = convertApiBody(body)
+    console.log(apiBodyFormat)
 
-    await api.patch(`/AtualizarUsuario/${body.userID}`, apiBodyFormat)
+    await api.patch(`/Usuarios/AtualizarUsuario`, apiBodyFormat)
   } catch {
     throw new Error('Erro ao atualizar as informações do usuário')
   }
