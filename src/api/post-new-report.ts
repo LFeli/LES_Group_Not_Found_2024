@@ -1,41 +1,33 @@
 import { api } from '@/lib/axios'
 
 interface postNewReportBody {
-  reportID: string
-  userID: string
+  userID: number | undefined
   postID: string
-  title: string
-  description: string
-  reportedAt: string
+  reason: string
+  message: string
 }
 
 interface apiBody {
-  idDenuncia: string
-  idUsuario: string
+  idUsuario: number | undefined
   idPostagem: string
   tituloDenuncia: string
   descricaoDenuncia: string
-  dataDenuncia: string
 }
 
 function convertApiBody(data: postNewReportBody): apiBody {
   return {
-    idDenuncia: data.reportID,
     idUsuario: data.userID,
     idPostagem: data.postID,
-    tituloDenuncia: data.title,
-    descricaoDenuncia: data.description,
-    dataDenuncia: data.reportedAt,
+    tituloDenuncia: data.reason,
+    descricaoDenuncia: data.message,
   }
 }
 
-export async function postNewVoucher(body: postNewReportBody) {
+export async function postNewReport(body: postNewReportBody) {
   try {
     const apiBodyFormat = convertApiBody(body)
 
-    const response = await api.post('/InserirNovaDenuncia', apiBodyFormat)
-
-    return response.data
+    await api.post('/Denuncia/InserirNovaDenuncia', apiBodyFormat)
   } catch (error) {
     throw new Error('Erro ao cadastrar uma nova denúncia')
   }
