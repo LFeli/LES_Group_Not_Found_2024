@@ -12,14 +12,14 @@ export function PostsList() {
   console.log(AllPosts)
 
   return (
-    <section className="grid grid-cols-3 gap-10 pb-32">
-      {/* {Array.from({ length: 9 }).map((_, index) => (
-        <DialogPost key={index} />
-      ))} */}
-      {/* {AllPosts?.map((post) => (
-        <PostCard key={post.postID} content={post.content} />
-      ))} */}
-      <span>Posts here...</span>
+    <section className="grid grid-cols-3 items-start gap-10 pb-32">
+      {AllPosts?.map((post) => (
+        <PostCard
+          key={post.postID}
+          content={post.content}
+          status={post.status}
+        />
+      ))}
     </section>
   )
 }
