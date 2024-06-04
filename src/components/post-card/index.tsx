@@ -1,30 +1,32 @@
-import { DialogContent } from '@radix-ui/react-dialog'
-
 import { postContent } from '@/api/get-all-posts'
 
-import { Dialog, DialogTrigger } from '../ui/dialog'
+import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
 import { PostCardTrigger } from './components/post-card-trigger'
+import { PostTabs } from './components/post-tabs.'
 
 interface PostCardProps {
+  postID: string
+  status: string
   content: postContent
 }
 
 export function PostCard(data: PostCardProps) {
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger className="h-full">
         <PostCardTrigger
           title={data.content.title}
-          banner={data.content.imagem}
+          banner={data.content.photoURL}
           donationsType={data.content.donationType}
           description={data.content.description}
           donationGoal={data.content.donationGoal}
           donationsRaised={data.content.donationsRaised}
+          status={data.status}
         />
       </DialogTrigger>
 
-      <DialogContent>
-        <span>Post Content here...</span>
+      <DialogContent className="max-h-[80vh] overflow-hidden">
+        <PostTabs postID={data.postID} content={data.content} />
       </DialogContent>
     </Dialog>
   )
