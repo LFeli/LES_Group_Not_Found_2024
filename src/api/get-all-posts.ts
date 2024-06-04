@@ -1,36 +1,52 @@
 import { api } from '@/lib/axios'
 
 export interface postContent {
-  title: string
-  description: string
   publishedAt: string
   approvedAt: string
-  userID: string
-  administratorID: string
-  imagem: string
   donationType: string
+  title: string
+  description: string
+  photoURL: string
   pixKey: string
-  status: string
   donationGoal: number
   donationsRaised: number
 }
 
 export interface getAllPostsResponse {
   postID: string
+  userID: string
+  admID: string
+  admMessage: string
+  status: string
   content: postContent
 }
 
 interface ApiResponse {
   idPostagem: string
-  titulo: string
-  conteudo: string
+  idUsuario: string
+  idAdministrador: string
   dtPublicacao: string
   dtAprovacao: string
-  idUsuario: string
-  idAdminstrador: string
-  imagem: string
+  doacaoPix: string
+  doacaoRacao: string
+  doacaoMedicamento: string
+  doacaoOutros: string
+  titulo: string
+  conteudo: string
+  urlFoto: string
   chavePix: string
+  metaDoacao: string
+  valorArrecadado: string
+  msgAdministrador: string
   status: string
+}
+
+function getDonationType(item: ApiResponse): string {
+  if (item.doacaoPix === 'True') return 'PIX'
+  if (item.doacaoRacao === 'True') return 'Ração'
+  if (item.doacaoMedicamento === 'True') return 'Medicamento'
+  if (item.doacaoOutros === 'True') return 'Outros'
+  return 'Desconhecido'
 }
 
 export async function getAllPosts(): Promise<getAllPostsResponse[]> {
@@ -38,19 +54,20 @@ export async function getAllPosts(): Promise<getAllPostsResponse[]> {
 
   const data: getAllPostsResponse[] = response.data.map((item) => ({
     postID: item.idPostagem,
+    userID: item.idUsuario,
+    admID: item.idAdministrador,
+    admMessage: item.msgAdministrador,
+    status: item.status,
     content: {
-      title: item.titulo,
-      description: item.conteudo,
       publishedAt: item.dtPublicacao,
       approvedAt: item.dtAprovacao,
-      userID: item.idUsuario,
-      administratorID: item.idAdminstrador,
-      imagem: item.imagem,
-      donationType: 'Remédio',
+      donationType: getDonationType(item),
+      title: item.titulo,
+      description: item.conteudo,
+      photoURL: item.urlFoto,
       pixKey: item.chavePix,
-      status: item.status,
-      donationGoal: 520,
-      donationsRaised: 1000,
+      donationGoal: Number(item.metaDoacao),
+      donationsRaised: Number(item.valorArrecadado),
     },
   }))
 
