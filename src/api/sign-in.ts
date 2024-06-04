@@ -7,6 +7,7 @@ export interface signInBody {
 
 export interface signInResponse {
   idUsuario: number
+  idPatrocinador?: number
   nome: string
   tipoUsuario: string
 }

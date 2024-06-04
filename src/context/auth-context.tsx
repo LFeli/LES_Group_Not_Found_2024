@@ -11,6 +11,7 @@ import { signIn, signInBody, signInResponse } from '@/api/sign-in'
 
 interface User {
   idUser: number
+  idSponsor?: number
   name: string
   userType: string
 }
@@ -52,8 +53,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const { mutateAsync: signInFn, isPending: isLogin } = useMutation({
     mutationFn: signIn,
     onSuccess(data: signInResponse) {
+      console.log(data)
       const userData = {
         idUser: data.idUsuario,
+        idSponsor: data.idPatrocinador,
         name: data.nome,
         userType: data.tipoUsuario,
       }
