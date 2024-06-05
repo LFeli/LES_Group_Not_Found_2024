@@ -4,7 +4,7 @@ const reasonReportSchema = z
   .string({
     required_error: 'E necessário o motivo da denúncia.',
   })
-  .min(1, { message: 'O campo do Por que está denunciando e obrigatório' })
+  .min(1, { message: 'O campo Motivo da denuncia e obrigatório' })
 
 const messageReportSchema = z
   .string({ required_error: 'E necessário ter uma mensagem.' })

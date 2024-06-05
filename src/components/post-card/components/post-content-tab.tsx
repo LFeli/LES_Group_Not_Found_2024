@@ -1,30 +1,49 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
+import { Controller, useForm } from 'react-hook-form'
 import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'sonner'
 
 import { postContent } from '@/api/get-all-posts'
+import { postNewDonation } from '@/api/post-new-donation'
 import { ErrorMessage } from '@/components/form-error-message'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Progress } from '@/components/ui/progress'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { TabsContent } from '@/components/ui/tabs'
+import { Textarea } from '@/components/ui/textarea'
 import { useAuth } from '@/context/auth-context'
 import { calculatePercentage } from '@/utils/calculate-percentage'
+import { formatToFloat } from '@/utils/format-to-float'
 
 import { postTabSchema, PostTabSchemaForm } from '../schemas/post-schema'
 
 interface PostContentTabProps {
+  postID: string
   content: postContent
+  closeDialog: () => void
 }
 
-export function PostContentTab({ content }: PostContentTabProps) {
+export function PostContentTab({
+  postID,
+  content,
+  closeDialog,
+}: PostContentTabProps) {
   const { user } = useAuth()
   const location = useLocation()
 
   const {
     register,
+    control,
     handleSubmit,
     reset,
     formState: { isSubmitting, errors },
@@ -32,9 +51,23 @@ export function PostContentTab({ content }: PostContentTabProps) {
     resolver: zodResolver(postTabSchema),
   })
 
-  function onFormSubmit(data: PostTabSchemaForm) {
+  const { mutateAsync: postNewDonationFn, isPending } = useMutation({
+    mutationFn: postNewDonation,
+  })
+
+  async function onFormSubmit(data: PostTabSchemaForm) {
     try {
-      console.log(data)
+      const formattedData = {
+        userDonatedID: user?.idUser,
+        postID,
+        donationValue: formatToFloat(data.value),
+        donationMessage: data.message,
+        proofPix: 'URL AI MEU',
+        donationType: data.donationType,
+      }
+
+      await postNewDonationFn(formattedData)
+      closeDialog()
       reset()
       toast.success('Sua doação foi enviado com sucesso!')
     } catch {
@@ -44,21 +77,15 @@ export function PostContentTab({ content }: PostContentTabProps) {
 
   return (
     <TabsContent value="post">
-      <div className="max-h-[640px] space-y-8 overflow-y-auto">
+      <div className="max-h-[580px] space-y-8 overflow-y-auto">
         <article>
           <div className="flex items-center gap-4 pb-8">
-            {/* <img
-              src={content.photoURL}
-              alt={`Foto da doação para o(a) ${content.title}`}
-              className="w-15 h-15 overflow-hidden rounded-full bg-zinc-600 object-cover"
-            /> */}
-
             <span>
               <h4 className="font-rubik text-lg font-semibold">
                 {content.title}
               </h4>
               <span className="font-medium text-yellow-700">
-                {content.donationType}
+                {content.donationType[0]}
               </span>
             </span>
           </div>
@@ -79,7 +106,7 @@ export function PostContentTab({ content }: PostContentTabProps) {
             Total já arrecadado
           </h4>
 
-          {content && content.donationType === 'PIX' && (
+          {content && content.donationType.includes('PIX') && (
             <Progress
               value={calculatePercentage(
                 content.donationGoal,
@@ -129,8 +156,55 @@ export function PostContentTab({ content }: PostContentTabProps) {
 
             <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
               <article className="mx-1 space-y-2">
+                <Label htmlFor="donationType">Tipo de doação</Label>
+                <Controller
+                  name="donationType"
+                  control={control}
+                  defaultValue=""
+                  disabled={isSubmitting || isPending}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecionar" />
+                      </SelectTrigger>
+
+                      <SelectContent>
+                        <SelectGroup>
+                          {content && content.donationType.includes('PIX') && (
+                            <SelectItem value="1">PIX</SelectItem>
+                          )}
+                          {content &&
+                            content.donationType.includes('Ração') && (
+                              <SelectItem value="2">Ração</SelectItem>
+                            )}
+                          {content &&
+                            content.donationType.includes('Medicamento') && (
+                              <SelectItem value="3">Medicamento</SelectItem>
+                            )}
+                          {content &&
+                            content.donationType.includes('Outros') && (
+                              <SelectItem value="4">Outros</SelectItem>
+                            )}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+
+                <ErrorMessage
+                  error={errors.value}
+                  placeholder="Selecione o tipo da doação aqui."
+                />
+              </article>
+
+              <article className="mx-1 space-y-2">
                 <Label htmlFor="value">Valor</Label>
-                <Input id="value" type="text" {...register('value')} />
+                <Input
+                  id="value"
+                  type="text"
+                  {...register('value')}
+                  disabled={isSubmitting || isPending}
+                />
 
                 <ErrorMessage
                   error={errors.value}
@@ -144,6 +218,7 @@ export function PostContentTab({ content }: PostContentTabProps) {
                   id="proofPix"
                   type="file"
                   accept="image/*"
+                  disabled={isSubmitting || isPending}
                   {...register('proofPix')}
                 />
 
@@ -153,8 +228,35 @@ export function PostContentTab({ content }: PostContentTabProps) {
                 />
               </article>
 
-              <div className="flex items-center justify-end py-8">
-                <Button type="submit" disabled={isSubmitting}>
+              <article className="mx-1 space-y-2">
+                <Label htmlFor="message">Mensagem da doação</Label>
+                <Controller
+                  name="message"
+                  control={control}
+                  defaultValue=""
+                  disabled={isSubmitting || isPending}
+                  render={({ field }) => (
+                    <Textarea
+                      placeholder="Sua mensagem aqui"
+                      className="resize-y"
+                      {...field}
+                    />
+                  )}
+                />
+
+                {errors.message && (
+                  <span className="mt-4 block text-sm font-medium text-red-500">
+                    {errors.message.message}
+                  </span>
+                )}
+              </article>
+
+              <div className="mb-16 flex items-center justify-end py-8">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting || isPending}
+                  className="mb-8 bg-green-600 text-zinc-900 hover:bg-green-700"
+                >
                   Enviar doação
                 </Button>
               </div>

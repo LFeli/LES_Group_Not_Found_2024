@@ -10,9 +10,10 @@ import { PostReportTab } from './post-report-tab'
 interface PostTabProps {
   postID: string
   content: postContent
+  closeDialog: () => void
 }
 
-export function PostTabs({ postID, content }: PostTabProps) {
+export function PostTabs({ postID, content, closeDialog }: PostTabProps) {
   const { user } = useAuth()
   const location = useLocation()
 
@@ -28,10 +29,18 @@ export function PostTabs({ postID, content }: PostTabProps) {
       </TabsList>
 
       <div className="rounded-md bg-muted p-4">
-        <PostContentTab content={content} />
+        <PostContentTab
+          postID={postID}
+          content={content}
+          closeDialog={closeDialog}
+        />
 
         {user && location.pathname !== '/postagens' && (
-          <PostReportTab postID={postID} content={content} />
+          <PostReportTab
+            postID={postID}
+            content={content}
+            closeDialog={closeDialog}
+          />
         )}
       </div>
     </Tabs>

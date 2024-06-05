@@ -18,9 +18,14 @@ import { reporTabSchema, ReportTabSchemaForm } from '../schemas/report-schema'
 interface PostReportTabProps {
   postID: string
   content: postContent
+  closeDialog: () => void
 }
 
-export function PostReportTab({ postID, content }: PostReportTabProps) {
+export function PostReportTab({
+  postID,
+  content,
+  closeDialog,
+}: PostReportTabProps) {
   const { user } = useAuth()
 
   const {
@@ -48,6 +53,7 @@ export function PostReportTab({ postID, content }: PostReportTabProps) {
       }
 
       await postNewReportFn(formattedValues)
+      closeDialog()
       reset()
       toast.success('Sua doação foi enviado com sucesso!')
     } catch {
@@ -57,7 +63,7 @@ export function PostReportTab({ postID, content }: PostReportTabProps) {
 
   return (
     <TabsContent value="report">
-      <div className="max-h-[640px] space-y-8 divide-y divide-zinc-300  overflow-y-auto">
+      <div className="max-h-[580px] space-y-8 divide-y divide-zinc-300  overflow-y-auto">
         <article className="space-y-4">
           <h4 className="font-rubik text-xl font-semibold">
             Denunciar postagem
@@ -137,7 +143,7 @@ export function PostReportTab({ postID, content }: PostReportTabProps) {
             <Button
               type="submit"
               disabled={isSubmitting || isPending}
-              className="bg-green-600 text-zinc-900 hover:bg-green-700"
+              className="mb-8 bg-green-600 text-zinc-900 hover:bg-green-700"
             >
               Enviar denuncia
             </Button>

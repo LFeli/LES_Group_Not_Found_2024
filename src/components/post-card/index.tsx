@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { postContent } from '@/api/get-all-posts'
 
 import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
@@ -11,8 +13,14 @@ interface PostCardProps {
 }
 
 export function PostCard(data: PostCardProps) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  function handleCloseModal() {
+    setIsOpen(false)
+  }
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger className="h-full">
         <PostCardTrigger
           title={data.content.title}
@@ -26,7 +34,11 @@ export function PostCard(data: PostCardProps) {
       </DialogTrigger>
 
       <DialogContent className="max-h-[80vh] overflow-hidden">
-        <PostTabs postID={data.postID} content={data.content} />
+        <PostTabs
+          postID={data.postID}
+          content={data.content}
+          closeDialog={handleCloseModal}
+        />
       </DialogContent>
     </Dialog>
   )

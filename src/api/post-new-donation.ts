@@ -1,49 +1,38 @@
 import { api } from '@/lib/axios'
 
 export interface postNewDonationBody {
-  donationID: string
-  admID: string
-  userID: string
-  title: string
-  description: string
-  publishedAt: string
-  approvedAt: string
-  image: string
-  pixKey: string
-  status: string
+  userDonatedID: number | undefined
+  postID: string
+  donationValue: string
+  donationMessage: string
+  proofPix: string
+  donationType: string
 }
 
 interface apiBody {
+  idUsuarioDoador: number | undefined
   idPostagem: string
-  idAdminstrador: string
-  idUsuario: string
-  titulo: string
-  conteudo: string
-  dtPublicacao: string
-  dtAprovacao: string
-  imagem: string
-  chavePix: string
-  status: string
+  valorDoacao: string
+  mensagem: string
+  comprovantePix: string
+  idTipoDoacao: string
 }
 
 function convertApiBody(data: postNewDonationBody): apiBody {
   return {
-    idPostagem: data.donationID,
-    titulo: data.admID,
-    conteudo: data.userID,
-    dtPublicacao: data.title,
-    dtAprovacao: data.description,
-    idUsuario: data.publishedAt,
-    idAdminstrador: data.approvedAt,
-    imagem: data.image,
-    chavePix: data.pixKey,
-    status: data.status,
+    idUsuarioDoador: data.userDonatedID,
+    idPostagem: data.postID,
+    valorDoacao: data.donationValue,
+    mensagem: data.donationMessage,
+    comprovantePix: data.proofPix,
+    idTipoDoacao: data.donationType,
   }
 }
 
 export async function postNewDonation(body: postNewDonationBody) {
   try {
     const apiBodyFormat = convertApiBody(body)
+    console.log(apiBodyFormat)
 
     await api.post('/Doacao/InserirNovaDoacao', apiBodyFormat)
   } catch (error) {

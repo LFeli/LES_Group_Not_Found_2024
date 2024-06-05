@@ -3,7 +3,7 @@ import { api } from '@/lib/axios'
 export interface postContent {
   publishedAt: string
   approvedAt: string
-  donationType: string
+  donationType: string[]
   title: string
   description: string
   photoURL: string
@@ -41,12 +41,15 @@ interface ApiResponse {
   status: string
 }
 
-function getDonationType(item: ApiResponse): string {
-  if (item.doacaoPix === 'True') return 'PIX'
-  if (item.doacaoRacao === 'True') return 'Ração'
-  if (item.doacaoMedicamento === 'True') return 'Medicamento'
-  if (item.doacaoOutros === 'True') return 'Outros'
-  return 'Desconhecido'
+function getDonationTypes(item: ApiResponse): string[] {
+  const donationTypes = []
+
+  if (item.doacaoPix === 'True') donationTypes.push('PIX')
+  if (item.doacaoRacao === 'True') donationTypes.push('Ração')
+  if (item.doacaoMedicamento === 'True') donationTypes.push('Medicamento')
+  if (item.doacaoOutros === 'True') donationTypes.push('Outros')
+
+  return donationTypes.length > 0 ? donationTypes : ['Desconhecido']
 }
 
 export async function getAllPosts(): Promise<getAllPostsResponse[]> {
@@ -61,7 +64,7 @@ export async function getAllPosts(): Promise<getAllPostsResponse[]> {
     content: {
       publishedAt: item.dtPublicacao,
       approvedAt: item.dtAprovacao,
-      donationType: getDonationType(item),
+      donationType: getDonationTypes(item),
       title: item.titulo,
       description: item.conteudo,
       photoURL: item.urlFoto,
