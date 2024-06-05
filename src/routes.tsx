@@ -16,6 +16,7 @@ import { DonationsAuth } from './pages/auth/donations'
 import { AuthHome } from './pages/auth/home'
 import { PostAuth } from './pages/auth/posts'
 import { ReportAuth } from './pages/auth/reports'
+import { SponsorAuth } from './pages/auth/sponsor'
 import { SponsorVoucher } from './pages/auth/sponsor/sponsor-voucher'
 import { UserPosts } from './pages/auth/user-posts'
 import { SignIn } from './pages/register/sign-in'
@@ -84,7 +85,7 @@ export const router = createBrowserRouter([
       {
         path: '/app/patrocinador',
         element: (
-          <PrivateRoute element={<SponsorVoucher />} routeType={['U']} />
+          <PrivateRoute element={<SponsorAuth />} routeType={['U', 'P']} />
         ),
       },
 
