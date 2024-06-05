@@ -1,50 +1,47 @@
 import { api } from '@/lib/axios'
-
-export interface postContent {
-  title: string
-  description: string
-  publishedAt: string
-  approvedAt: string
-  userID: string
-  administratorID: string
-  imagem: string
-  donationType: string
-  pixKey: string
-  status: string
-  donationGoal: number
-  donationsRaised: number
-}
+import { formatToFloat } from '@/utils/format-to-float'
 
 export interface postNewPostResponse {
-  postID: string
-  content: postContent
+  userID: number | undefined
+  donationTypes: string[]
+  title: string
+  description: string
+  urlPhoto: string
+  pixKey: string
+  donationGoal: string
 }
 
 interface apiBody {
-  idPostagem: string
+  idUsuario: number | undefined
+  doacaoPix: string
+  doacaoRacao: string
+  doacaoMedicamento: string
+  doacaoOutros: string
   titulo: string
   conteudo: string
-  dtPublicacao: string
-  dtAprovacao: string
-  idUsuario: string
-  idAdminstrador: string
-  imagem: string
+  urlFoto: string
   chavePix: string
-  status: string
+  metaDoacao: string
+
+  idAdministrador: string
+  valorArrecadado: string
 }
 
 function convertApiBody(data: postNewPostResponse): apiBody {
   return {
-    idPostagem: data.postID,
-    titulo: data.content.title,
-    conteudo: data.content.description,
-    dtPublicacao: data.content.publishedAt,
-    dtAprovacao: data.content.approvedAt,
-    idUsuario: data.content.userID,
-    idAdminstrador: data.content.administratorID,
-    imagem: data.content.imagem,
-    chavePix: data.content.pixKey,
-    status: data.content.status,
+    idUsuario: data.userID,
+    doacaoPix: data.donationTypes.includes('1') ? 'True' : 'False',
+    doacaoRacao: data.donationTypes.includes('2') ? 'True' : 'False',
+    doacaoMedicamento: data.donationTypes.includes('3') ? 'True' : 'False',
+    doacaoOutros: data.donationTypes.includes('4') ? 'True' : 'False',
+    titulo: data.title,
+    conteudo: data.description,
+    urlFoto: data.urlPhoto,
+    chavePix: data.pixKey,
+    metaDoacao: formatToFloat(data.donationGoal),
+
+    idAdministrador: '0',
+    valorArrecadado: '0',
   }
 }
 
@@ -52,7 +49,9 @@ export async function postNewPost(body: postNewPostResponse) {
   try {
     const apiBodyFormat = convertApiBody(body)
 
-    await api.post('/InserirNovapostagem', apiBodyFormat)
+    console.log(apiBodyFormat)
+
+    await api.post('/Postagem/InserirNovapostagem', apiBodyFormat)
   } catch (error) {
     throw new Error('Erro ao cadastrar uma nova postagem')
   }

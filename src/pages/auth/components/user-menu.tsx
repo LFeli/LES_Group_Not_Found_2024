@@ -25,10 +25,13 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useAuth } from '@/context/auth-context'
 
+import { NewPostDialog } from './new-post-dialog'
 import { UserEditInfosDialog } from './user-edit-infos-dialog'
 
 export function UserMenu() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isEditUserPerfilDialog, setIsEditUserPerfilDialog] = useState(false)
+  const [isNewPostDialog, setIsNewPostDialog] = useState(false)
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const { user, signOut } = useAuth()
@@ -40,9 +43,14 @@ export function UserMenu() {
     toast.success('Logout efetuado com sucesso!')
   }
 
-  function handleOpenDialog() {
+  function handleOpenEditUserPerfilDialog() {
     setIsDropdownOpen(false)
-    setIsDialogOpen(true)
+    setIsEditUserPerfilDialog(true)
+  }
+
+  function handleOpenNewPostDialog() {
+    setIsDropdownOpen(false)
+    setIsNewPostDialog(true)
   }
 
   return (
@@ -63,14 +71,17 @@ export function UserMenu() {
           <DropdownMenuLabel>Ações</DropdownMenuLabel>
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
+          <DropdownMenuItem
+            className="cursor-pointer space-x-3 focus:bg-green-100"
+            onClick={handleOpenNewPostDialog}
+          >
             <Plus className="h-4 w-4" />
             <span>Criar Postagem</span>
           </DropdownMenuItem>
 
           <DropdownMenuItem
             className="cursor-pointer space-x-3 focus:bg-green-100"
-            onClick={handleOpenDialog}
+            onClick={handleOpenEditUserPerfilDialog}
           >
             <Pencil className="h-4 w-4" />
             <span>Editar perfil</span>
@@ -131,8 +142,17 @@ export function UserMenu() {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <UserEditInfosDialog closeDialog={() => setIsDialogOpen(false)} />
+      <Dialog
+        open={isEditUserPerfilDialog}
+        onOpenChange={setIsEditUserPerfilDialog}
+      >
+        <UserEditInfosDialog
+          closeDialog={() => setIsEditUserPerfilDialog(false)}
+        />
+      </Dialog>
+
+      <Dialog open={isNewPostDialog} onOpenChange={setIsNewPostDialog}>
+        <NewPostDialog closeDialog={() => setIsNewPostDialog(false)} />
       </Dialog>
     </>
   )

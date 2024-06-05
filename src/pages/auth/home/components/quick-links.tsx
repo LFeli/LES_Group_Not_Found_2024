@@ -1,8 +1,16 @@
+import { Dialog } from '@radix-ui/react-dialog'
 import { Files, HandHeart, PlusCircle, Send, TicketPercent } from 'lucide-react'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 
+import { NewPostDialog } from '../../components/new-post-dialog'
+import { NewVoucherDialog } from '../../sponsor/components/new-voucher-dialog'
+
 export function QuickLinks() {
+  const [isNewPostDialog, setIsNewPostDialog] = useState(false)
+  const [isNewVoucherDialog, setIsNewVoucherDialog] = useState(false)
+
   return (
     <section className="flex flex-col items-center justify-start space-y-24 pb-32">
       <div className="mr-auto max-w-[900px] space-y-8">
@@ -18,6 +26,7 @@ export function QuickLinks() {
         <article className="overflow-hidden rounded-md">
           <Button
             variant={'ghost'}
+            onClick={() => setIsNewPostDialog(true)}
             className="group h-20 whitespace-normal p-0 hover:bg-green-50"
           >
             <div className="flex h-20 w-[80px] items-center justify-center rounded-md bg-green-100">
@@ -76,6 +85,7 @@ export function QuickLinks() {
         <article className="rounded-md">
           <Button
             variant={'ghost'}
+            onClick={() => setIsNewVoucherDialog(true)}
             className="group h-20 whitespace-normal p-0 hover:bg-green-50"
           >
             <div className="flex h-20 w-[80px] items-center justify-center rounded-md bg-green-100">
@@ -133,6 +143,14 @@ export function QuickLinks() {
           </Button>
         </article>
       </div>
+
+      <Dialog open={isNewPostDialog} onOpenChange={setIsNewPostDialog}>
+        <NewPostDialog closeDialog={() => setIsNewPostDialog(false)} />
+      </Dialog>
+
+      <Dialog open={isNewVoucherDialog} onOpenChange={setIsNewVoucherDialog}>
+        <NewVoucherDialog closeDialog={() => setIsNewVoucherDialog(false)} />
+      </Dialog>
     </section>
   )
 }
