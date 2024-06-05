@@ -1,8 +1,12 @@
 import { Table } from '@tanstack/react-table'
 import { X } from 'lucide-react'
+import { useState } from 'react'
 
 import { DataTableToolbarInput } from '@/components/data-table-toolbar-input'
 import { Button } from '@/components/ui/button'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
+
+import { NewVoucherDialog } from './new-voucher-dialog'
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -11,7 +15,12 @@ interface DataTableToolbarProps<TData> {
 export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
   const isFiltered = table.getState().columnFilters.length > 0
+
+  function handleCloseDialog() {
+    setIsDialogOpen(false)
+  }
 
   return (
     <div className="flex items-center justify-between">
@@ -34,6 +43,14 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogTrigger asChild>
+          <Button variant={'outline'}>Adicionar novo Voucher</Button>
+        </DialogTrigger>
+
+        <NewVoucherDialog closeDialog={handleCloseDialog} />
+      </Dialog>
     </div>
   )
 }

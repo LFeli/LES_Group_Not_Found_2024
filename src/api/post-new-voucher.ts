@@ -1,31 +1,32 @@
 import { api } from '@/lib/axios'
+import { formatToFloat } from '@/utils/format-to-float'
 
 interface postNewVoucherBody {
-  voucherID: string
-  sponsorID: string
-  dueDate: string
+  sponsorID: number | undefined
+  validateAt: string
   voucherName: string
-  value: string
-  status: string
+  voucherValue: string
 }
 
 interface apiBody {
-  idVoucher: string
-  idPatrocinador: string
+  idPatrocinador: number | undefined
   dtVencimento: string
   cupom: string
   valor: string
-  status: string
 }
 
 function convertApiBody(data: postNewVoucherBody): apiBody {
+  console.log(data)
+  console.log(data.voucherValue)
+  const noThousandsSeparator = data.voucherValue.replace(/\./g, '')
+  const floatString = noThousandsSeparator.replace(',', '.')
+  console.log(floatString)
+
   return {
-    idVoucher: data.voucherID,
     idPatrocinador: data.sponsorID,
-    dtVencimento: data.dueDate,
+    dtVencimento: data.validateAt,
     cupom: data.voucherName,
-    valor: data.value,
-    status: data.status,
+    valor: formatToFloat(data.voucherValue),
   }
 }
 
@@ -33,9 +34,7 @@ export async function postNewVoucher(body: postNewVoucherBody) {
   try {
     const apiBodyFormat = convertApiBody(body)
 
-    const response = await api.post('/InserirNovoVoucher', apiBodyFormat)
-
-    return response.data
+    await api.post('/Voucher/InserirNovoVoucher', apiBodyFormat)
   } catch (error) {
     throw new Error('Erro ao cadastrar um novo voucher')
   }
