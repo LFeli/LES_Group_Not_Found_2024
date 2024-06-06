@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { getUserPosts } from '@/api/get-user-posts'
+import { PostCard } from '@/components/post-card'
 import { useAuth } from '@/context/auth-context'
 
 export function PostsList() {
@@ -15,7 +16,13 @@ export function PostsList() {
 
   return (
     <section className="grid grid-cols-3 gap-10 pb-16">
-      <span>Posts here...</span>
+      {getUserPosts?.map((post) => (
+        <PostCard
+          key={post.postID}
+          content={post.content}
+          status={post.status}
+        />
+      ))}
     </section>
   )
 }
