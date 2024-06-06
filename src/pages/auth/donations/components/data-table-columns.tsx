@@ -20,19 +20,19 @@ export const columns: ColumnDef<DonationsDataTableSchema>[] = [
   },
 
   {
-    accessorKey: 'title',
+    accessorKey: 'message',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Título" />
     ),
     cell: ({ row }) => (
       <div className="min-w-96 truncate font-medium">
-        <span>{row.getValue('title')}</span>
+        <span>{row.getValue('message')}</span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'value',
+    accessorKey: 'donationValue',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Valor" />
     ),
@@ -40,22 +40,20 @@ export const columns: ColumnDef<DonationsDataTableSchema>[] = [
       <div>
         <span className="font-medium">
           R$ {''}
-          {row.getValue('value')}
+          {row.getValue('donationValue')}
         </span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'createdAt',
+    accessorKey: 'donatedAt',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Data da criação" />
+      <DataTableColumnHeader column={column} title="Data da doação" />
     ),
     cell: ({ row }) => (
       <div>
-        <span className="font-medium">
-          {format(new Date(row.getValue('createdAt')), 'dd/MM/yyyy')}
-        </span>
+        <span className="font-medium">{row.getValue('donatedAt')}</span>
       </div>
     ),
   },

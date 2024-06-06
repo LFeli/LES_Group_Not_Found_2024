@@ -11,7 +11,7 @@ import jsonData from './fake-data.json'
 export function DonationsAuth() {
   const { user } = useAuth()
 
-  const { data: userDonations } = useQuery({
+  const { data: userDonations, isPending } = useQuery({
     queryFn: () => getUserDonations({ userID: user?.idUser }),
     queryKey: ['userDonations', 'donations'],
   })
@@ -35,7 +35,11 @@ export function DonationsAuth() {
           </p>
         </div>
 
-        <DataTable columns={columns} data={userDonations} />
+        {isPending ? (
+          <div>carregando...</div>
+        ) : (
+          <DataTable columns={columns} data={userDonations} />
+        )}
       </div>
     </main>
   )
