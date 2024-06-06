@@ -27,7 +27,7 @@ export function DataTableToolbar<TData>({
       <div className="flex flex-1 items-center space-x-2">
         <DataTableToolbarInput
           table={table}
-          columnFilter="title"
+          columnFilter="voucherName"
           placeholder="Filtrar por Título"
         />
 
