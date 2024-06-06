@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 import { useAuth } from './context/auth-context'
 
@@ -10,6 +10,12 @@ interface PrivateRoutesProps {
 
 export function PrivateRoute({ element, routeType }: PrivateRoutesProps) {
   const { user } = useAuth()
+  const navigate = useNavigate()
+
+  if (user?.userType === 'A') {
+    navigate('/admin/', { replace: true })
+    return null
+  }
 
   return user && routeType.includes(user.userType) ? (
     element

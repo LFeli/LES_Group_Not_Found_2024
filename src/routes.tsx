@@ -12,6 +12,10 @@ import { Posts } from '@/pages/app/posts'
 import { Sponsor } from '@/pages/app/sponsor'
 import { PrivateRoute } from '@/private-route'
 
+import { AdminManageUsers } from './pages/admin/manage-users'
+import { AdminPostsForApproval } from './pages/admin/posts-for-approval'
+import { AdminReportsForVerify } from './pages/admin/reports-for-verify'
+import { AdminSponsorForApproval } from './pages/admin/sponsor-for-approval'
 import { DonationsAuth } from './pages/auth/donations'
 import { AuthHome } from './pages/auth/home'
 import { PostAuth } from './pages/auth/posts'
@@ -127,6 +131,37 @@ export const router = createBrowserRouter([
       {
         path: '/admin/',
         element: <PrivateRoute element={<AdminHome />} routeType={['A']} />,
+      },
+
+      {
+        path: '/admin/postagem-aprovacao',
+        element: (
+          <PrivateRoute element={<AdminPostsForApproval />} routeType={['A']} />
+        ),
+      },
+
+      {
+        path: '/admin/patrocinadores-aprovacao',
+        element: (
+          <PrivateRoute
+            element={<AdminSponsorForApproval />}
+            routeType={['A']}
+          />
+        ),
+      },
+
+      {
+        path: '/admin/gerenciar-usuarios',
+        element: (
+          <PrivateRoute element={<AdminManageUsers />} routeType={['A']} />
+        ),
+      },
+
+      {
+        path: '/admin/denuncias',
+        element: (
+          <PrivateRoute element={<AdminReportsForVerify />} routeType={['A']} />
+        ),
       },
     ],
   },
