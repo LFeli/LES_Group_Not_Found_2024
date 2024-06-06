@@ -6,8 +6,7 @@ interface getUserVoucherProps {
 
 interface getUserVoucherResponse {
   voucherID: string
-  sponsorID: string
-  dueDate: string
+  validateAt: string
   voucherName: string
   value: string
   status: string
@@ -15,7 +14,6 @@ interface getUserVoucherResponse {
 
 interface apiResponse {
   idVoucher: string
-  idPatrocinador: string
   dtVencimento: string
   cupom: string
   valor: string
@@ -29,15 +27,14 @@ function convertApiResponse(
 
   return dataArray.map((item) => ({
     voucherID: item.idVoucher,
-    sponsorID: item.idPatrocinador,
-    dueDate: item.dtVencimento,
+    validateAt: item.dtVencimento,
     voucherName: item.cupom,
     value: item.valor,
     status: item.status,
   }))
 }
 
-export async function getAllVouchers({
+export async function getUserVouchers({
   userID,
 }: getUserVoucherProps): Promise<getUserVoucherResponse[]> {
   const response = await api.get<apiResponse>(
