@@ -1,12 +1,12 @@
 import { api } from '@/lib/axios'
 
 interface deleteVoucherProps {
-  voucherID: number
+  voucherID: string | undefined
 }
 
 export async function deleteVoucher({ voucherID }: deleteVoucherProps) {
   try {
-    await api.delete(`/DeletarVoucher/${voucherID}`)
+    await api.delete(`/Voucher/DeletarVoucher/${voucherID}`)
   } catch (error) {
     throw new Error('Erro ao excluir um voucher')
   }

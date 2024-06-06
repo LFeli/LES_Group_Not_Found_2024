@@ -1,52 +1,54 @@
 import { api } from '@/lib/axios'
 
-export interface getAllDonations {
+export interface getAllDonationsResponse {
   donationID: string
-  admID: string | null
+  userDonatedID: number | null
   postID: string
   voucherID: string | null
   donationValue: string
   message: string
   pixProof: string
+  donationType: string
   donatedAt: string
   status: string
 }
 
 interface apiResponse {
   idDoacao: string
-  idAdminstrador: string | null
-  idUsuarioDoador: string
+  idUsuarioDoador: number | null
   idPostagem: string
   idVoucher: string
   valorDoacao: string
   mensagem: string
   comprovantePix: string
+  idTipoDoacao: string
   dtDoacao: string
   status: string
 }
 
 function convertApiResponse(
   data: apiResponse | apiResponse[],
-): getAllDonations[] {
+): getAllDonationsResponse[] {
   const dataArray = Array.isArray(data) ? data : [data]
 
   return dataArray.map((item) => ({
     donationID: item.idDoacao,
-    admID: item.idAdminstrador,
+    userDonatedID: item.idUsuarioDoador,
     postID: item.idPostagem,
     voucherID: item.idVoucher,
     donationValue: item.valorDoacao,
     message: item.mensagem,
     pixProof: item.comprovantePix,
+    donationType: item.idTipoDoacao,
     donatedAt: item.dtDoacao,
     status: item.status,
   }))
 }
 
-export async function getUserDonations(): Promise<getAllDonations[]> {
+export async function getAllDonations(): Promise<getAllDonationsResponse[]> {
   const response = await api.get<apiResponse[]>('/Doacao/TodasDoacoes')
 
-  const data: getAllDonations[] = convertApiResponse(response.data)
+  const data: getAllDonationsResponse[] = convertApiResponse(response.data)
 
   return data
 }

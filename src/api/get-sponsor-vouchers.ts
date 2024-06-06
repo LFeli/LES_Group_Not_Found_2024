@@ -1,7 +1,7 @@
 import { api } from '@/lib/axios'
 
 interface getSponsorVouchersProps {
-  userID: number
+  sponsorID: number
 }
 
 interface getSponsorVouchersResponse {
@@ -38,10 +38,10 @@ function convertApiResponse(
 }
 
 export async function getSponsorVouchers({
-  userID,
+  sponsorID,
 }: getSponsorVouchersProps): Promise<getSponsorVouchersResponse[]> {
   const response = await api.get<apiResponse[]>(
-    `/Voucher/VoucherPatronicador/${userID}`,
+    `/Voucher/VoucherPatronicador/${sponsorID}`,
   )
 
   const data: getSponsorVouchersResponse[] = convertApiResponse(response.data)
