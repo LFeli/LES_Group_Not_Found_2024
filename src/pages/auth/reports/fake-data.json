@@ -1,20 +1,22 @@
 [
   {
-    "status": "ativo",
-    "title": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis.",
-    "reason": "Spam",
-    "createdAt": "2024-05-15T09:00:00.000Z"
+    "reportedTitle": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis.",
+    "reportedDescription": "Spam",
+    "reportedAt": "06/06/2024",
+    "postID": "1"
   },
+
   {
-    "status": "ativo",
-    "title": "Item 9",
-    "reason": "Spam",
-    "createdAt": "2024-05-15T09:00:00.000Z"
+    "reportedTitle": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis.",
+    "reportedDescription": "Conteúdo falso",
+    "reportedAt": "06/06/2024",
+    "postID": "2"
   },
+
   {
-    "status": "ativo",
-    "title": "Item 9",
-    "reason": "Spam",
-    "createdAt": "2024-05-15T09:00:00.000Z"
-  } 
+    "reportedTitle": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis, Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis..",
+    "reportedDescription": "Spam",
+    "reportedAt": "06/06/2024",
+    "postID": "3"
+  }
 ]

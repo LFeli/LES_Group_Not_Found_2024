@@ -32,7 +32,7 @@ export function DataTableRowActions<TData>({
   return (
     <>
       {link.voucherID === 'I' ? (
-        <span>a</span>
+        <span></span>
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

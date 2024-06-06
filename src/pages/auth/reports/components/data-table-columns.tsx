@@ -1,5 +1,4 @@
 import { ColumnDef } from '@tanstack/react-table'
-import { format } from 'date-fns'
 
 import { DataTableColumnHeader } from '@/components/data-table-column-header'
 
@@ -8,51 +7,46 @@ import { DataTableRowActions } from './data-table-row-actions'
 
 export const columns: ColumnDef<ReportsDataTableSchema>[] = [
   {
-    accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
-    ),
-    cell: ({ row }) => (
-      <div>
-        <span className="font-medium">{row.getValue('status')}</span>
-      </div>
-    ),
-  },
-
-  {
-    accessorKey: 'title',
+    accessorKey: 'reportedTitle',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Título" />
     ),
     cell: ({ row }) => (
       <div className="w-full max-w-[400px] truncate font-medium">
-        <span>{row.getValue('title')}</span>
+        <span>{row.getValue('reportedTitle')}</span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'reason',
+    accessorKey: 'reportedDescription',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Motivo da denúncia" />
     ),
     cell: ({ row }) => (
       <div className="truncate font-medium">
-        <span>{row.getValue('reason')}</span>
+        <span>{row.getValue('reportedDescription')}</span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'createdAt',
+    accessorKey: 'reportedAt',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Data da denúncia" />
     ),
     cell: ({ row }) => (
       <div>
-        <span className="font-medium">
-          {format(new Date(row.getValue('createdAt')), 'dd/MM/yyyy')}
-        </span>
+        <span className="font-medium">{row.getValue('reportedAt')}</span>
+      </div>
+    ),
+  },
+
+  {
+    id: 'postID',
+    cell: ({ row }) => (
+      <div className="sr-only">
+        <span className="font-medium">{row.getValue('postID')}</span>
       </div>
     ),
   },

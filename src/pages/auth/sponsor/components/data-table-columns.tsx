@@ -7,15 +7,6 @@ import { DataTableRowActions } from './data-table-row-action'
 
 export const columns: ColumnDef<VouchersDataTableSchema>[] = [
   {
-    id: 'voucherID',
-    cell: ({ row }) => (
-      <div className="sr-only">
-        <span className="font-medium">{row.getValue('voucherID')}</span>
-      </div>
-    ),
-  },
-
-  {
     accessorKey: 'status',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
@@ -62,6 +53,15 @@ export const columns: ColumnDef<VouchersDataTableSchema>[] = [
           R$ {''}
           {row.getValue('value')}
         </span>
+      </div>
+    ),
+  },
+
+  {
+    id: 'voucherID',
+    cell: ({ row }) => (
+      <div className="sr-only">
+        <span className="font-medium">{row.getValue('voucherID')}</span>
       </div>
     ),
   },

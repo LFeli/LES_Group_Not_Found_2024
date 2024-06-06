@@ -5,8 +5,8 @@ interface getUserReportsProps {
 }
 
 interface getUserReportsResponse {
-  reportID: number
-  userID: number
+  // reportID: number
+  // userID: number
   postID: number
   reportedTitle: string
   reportedDescription: string
@@ -14,8 +14,8 @@ interface getUserReportsResponse {
 }
 
 interface apiResponse {
-  idDenuncia: number
-  idUsuario: number
+  // idDenuncia: number
+  // idUsuario: number
   idPostagem: number
   tituloDenuncia: string
   descricaoDenuncia: string
@@ -28,8 +28,8 @@ function convertApiResponse(
   const dataArray = Array.isArray(data) ? data : [data]
 
   return dataArray.map((item) => ({
-    reportID: item.idDenuncia,
-    userID: item.idUsuario,
+    // reportID: item.idDenuncia,
+    // userID: item.idUsuario,
     postID: item.idPostagem,
     reportedTitle: item.tituloDenuncia,
     reportedDescription: item.descricaoDenuncia,

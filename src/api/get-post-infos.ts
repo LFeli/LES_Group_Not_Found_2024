@@ -1,7 +1,7 @@
 import { api } from '@/lib/axios'
 
 interface getPostInfosProps {
-  userID: string
+  userID: string | undefined
 }
 
 interface postContent {

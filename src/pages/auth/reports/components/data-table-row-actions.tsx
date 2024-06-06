@@ -1,7 +1,10 @@
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { Row } from '@tanstack/react-table'
+import { Eye } from 'lucide-react'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { Dialog } from '@/components/ui/dialog'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 
 import { ReportsSchema } from '../schemas/data-table-reports-schema'
+import { ReportedPostDialog } from './reported-post-dialog'
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -18,6 +22,8 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
+  const [isViewReportPostDialog, setIsViewReportPostDialog] = useState(false)
+
   const link = ReportsSchema.parse(row.original)
   console.log('Output of link on DataTableRowActions component: ', link)
 
@@ -33,10 +39,21 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Editar</DropdownMenuItem>
-        <DropdownMenuItem>Excluir</DropdownMenuItem>
+      <DropdownMenuContent align="end" className="">
+        <DropdownMenuItem
+          onClick={() => setIsViewReportPostDialog(true)}
+          className="flex items-center justify-start gap-2"
+        >
+          <Eye className="h-4 w-4" /> Ver publicação
+        </DropdownMenuItem>
       </DropdownMenuContent>
+
+      <Dialog
+        open={isViewReportPostDialog}
+        onOpenChange={setIsViewReportPostDialog}
+      >
+        <ReportedPostDialog voucherID={link?.postID} reportContent={link} />
+      </Dialog>
     </DropdownMenu>
   )
 }
