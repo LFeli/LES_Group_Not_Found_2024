@@ -13,7 +13,7 @@ export function DonationsAuth() {
 
   const { data: userDonations } = useQuery({
     queryFn: () => getUserDonations({ userID: user?.idUser }),
-    queryKey: ['userDonations'],
+    queryKey: ['userDonations', 'donations'],
   })
 
   console.log(userDonations)
@@ -35,7 +35,7 @@ export function DonationsAuth() {
           </p>
         </div>
 
-        <DataTable columns={columns} data={jsonData} />
+        <DataTable columns={columns} data={userDonations} />
       </div>
     </main>
   )

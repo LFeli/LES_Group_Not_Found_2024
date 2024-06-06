@@ -5,24 +5,15 @@ interface getUserDonationsProps {
 }
 
 interface getUserDonationsResponse {
-  donationID: string
-  admID: string | null
-  donorUserID: string
-  postID: string
-  voucherID: string
-  donationGoal: string
+  donationValue: string
   message: string
+  donatedAt: string
+  status: string
 }
 
 interface apiResponse {
-  idDoacao: string
-  idAdminstrador: string | null
-  idUsuarioDoador: string
-  idPostagem: string
-  idVoucher: string
   valorDoacao: string
   mensagem: string
-  comprovantePix: string
   dtDoacao: string
   status: string
 }
@@ -33,13 +24,10 @@ function convertApiResponse(
   const dataArray = Array.isArray(data) ? data : [data]
 
   return dataArray.map((item) => ({
-    donationID: item.idDoacao,
-    admID: item.idAdminstrador,
-    donorUserID: item.idUsuarioDoador,
-    postID: item.idPostagem,
-    voucherID: item.idVoucher,
-    donationGoal: item.valorDoacao,
+    donationValue: item.valorDoacao,
     message: item.mensagem,
+    donatedAt: item.dtDoacao,
+    status: item.status,
   }))
 }
 
