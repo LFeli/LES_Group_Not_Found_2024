@@ -1,11 +1,20 @@
 import { ColumnDef } from '@tanstack/react-table'
-import { format } from 'date-fns'
 
 import { DataTableColumnHeader } from '@/components/data-table-column-header'
 
 import { VouchersDataTableSchema } from '../schemas/vouchers-schema'
+import { DataTableRowActions } from './data-table-row-action'
 
 export const columns: ColumnDef<VouchersDataTableSchema>[] = [
+  {
+    id: 'voucherID',
+    cell: ({ row }) => (
+      <div className="sr-only">
+        <span className="font-medium">{row.getValue('voucherID')}</span>
+      </div>
+    ),
+  },
+
   {
     accessorKey: 'status',
     header: ({ column }) => (
@@ -19,27 +28,25 @@ export const columns: ColumnDef<VouchersDataTableSchema>[] = [
   },
 
   {
-    accessorKey: 'title',
+    accessorKey: 'voucherName',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Nome" />
     ),
     cell: ({ row }) => (
       <div className="flex-1 truncate font-medium">
-        <span>{row.getValue('title')}</span>
+        <span>{row.getValue('voucherName')}</span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'createdAt',
+    accessorKey: 'validateAt',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Data da criação" />
     ),
     cell: ({ row }) => (
       <div>
-        <span className="font-medium">
-          {format(new Date(row.getValue('createdAt')), 'dd/MM/yyyy')}
-        </span>
+        <span className="font-medium">{row.getValue('validateAt')}</span>
       </div>
     ),
   },
@@ -60,29 +67,7 @@ export const columns: ColumnDef<VouchersDataTableSchema>[] = [
   },
 
   {
-    accessorKey: 'isUse',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Uso" />
-    ),
-    cell: ({ row }) => (
-      <div>
-        <span className="font-medium">{row.getValue('isUse')}</span>
-      </div>
-    ),
-  },
-
-  {
-    accessorKey: 'dateOfUse',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Data de uso" />
-    ),
-    cell: ({ row }) => (
-      <div>
-        <span className="font-medium">
-          {' '}
-          {format(new Date(row.getValue('dateOfUse')), 'dd/MM/yyyy')}
-        </span>
-      </div>
-    ),
+    id: 'actions',
+    cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ]
