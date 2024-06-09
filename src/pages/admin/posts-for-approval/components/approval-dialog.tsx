@@ -59,7 +59,7 @@ export function ApprovalDialog({ postID }: ApprovalDialogProps) {
   }
 
   return (
-    <DialogContent className="h-[85vh]">
+    <DialogContent className="h-[85vh] overflow-y-auto">
       <DialogHeader>
         <DialogTitle className="font-rubik text-xl">
           Postagem para aprovação
@@ -71,7 +71,7 @@ export function ApprovalDialog({ postID }: ApprovalDialogProps) {
       </DialogHeader>
 
       <article>
-        <div className="max-h-56 space-y-4 overflow-y-auto">
+        <div className="space-y-4">
           <h4 className="font-rubik text-lg font-semibold">
             Conteúdo da postagem
           </h4>
@@ -114,7 +114,7 @@ export function ApprovalDialog({ postID }: ApprovalDialogProps) {
             </span>
 
             <span className="block overflow-hidden rounded-md border-2 border-border px-4 py-2 font-karla text-sm font-medium leading-relaxed text-zinc-700">
-              {postInfo?.content.donationGoal}
+              {postInfo?.content.donationType}
             </span>
           </div>
 
@@ -188,7 +188,11 @@ export function ApprovalDialog({ postID }: ApprovalDialogProps) {
         </article>
 
         <div className="flex items-center justify-end pt-8">
-          <Button type="submit" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="mb-1 ml-auto mr-1 bg-green-500 text-zinc-800 hover:bg-green-600"
+          >
             Enviar doação
           </Button>
         </div>

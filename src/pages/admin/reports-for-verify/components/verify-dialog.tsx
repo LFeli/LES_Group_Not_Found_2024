@@ -225,7 +225,11 @@ export function VerifyDialog({ content, closeDialog }: VerifyDialogProps) {
         </article>
 
         <div className="flex items-center justify-end pt-8">
-          <Button type="submit" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="mb-1 ml-auto mr-1 bg-green-500 text-zinc-800 hover:bg-green-600"
+          >
             Enviar doação
           </Button>
         </div>
