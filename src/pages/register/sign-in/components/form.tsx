@@ -11,7 +11,7 @@ import { useAuth } from '@/context/auth-context'
 import { SignInFormSchema, SignInSchema } from '../schemas/sign-in-form-schema'
 
 export function Form() {
-  const { login, isLogin } = useAuth()
+  const { login, isLogin, user } = useAuth()
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
@@ -29,7 +29,9 @@ export function Form() {
   async function onFormSubmit({ email, password }: SignInFormSchema) {
     try {
       await login({ email, password })
-      navigate('/app/')
+      user?.userType === 'A'
+        ? navigate('/admin/', { replace: true })
+        : navigate('/app/', { replace: true })
       toast.success('Login efetuado com sucesso!')
     } catch {
       toast.error(
