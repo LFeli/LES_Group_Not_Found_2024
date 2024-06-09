@@ -7,6 +7,18 @@ import { DataTableRowActions } from './data-table-row-action'
 
 export const columns: ColumnDef<reportVerifyDataTableSchema>[] = [
   {
+    accessorKey: 'postID',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="ID do Post" />
+    ),
+    cell: ({ row }) => (
+      <div>
+        <span className="font-medium">{row.getValue('postID')}</span>
+      </div>
+    ),
+  },
+
+  {
     accessorKey: 'title',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Motivo da denúncia" />
@@ -47,15 +59,6 @@ export const columns: ColumnDef<reportVerifyDataTableSchema>[] = [
     cell: ({ row }) => (
       <div className="sr-only">
         <span className="font-medium">{row.getValue('userID')}</span>
-      </div>
-    ),
-  },
-
-  {
-    id: 'postID',
-    cell: ({ row }) => (
-      <div className="sr-only">
-        <span className="font-medium">{row.getValue('postID')}</span>
       </div>
     ),
   },
