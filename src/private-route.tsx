@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 
 import { useAuth } from './context/auth-context'
@@ -12,10 +12,11 @@ export function PrivateRoute({ element, routeType }: PrivateRoutesProps) {
   const { user } = useAuth()
   const navigate = useNavigate()
 
-  if (user?.userType === 'A') {
-    navigate('/admin/', { replace: true })
-    return null
-  }
+  useEffect(() => {
+    if (user?.userType === 'A') {
+      navigate('/admin/', { replace: true })
+    }
+  }, [user, navigate])
 
   return user && routeType.includes(user.userType) ? (
     element
