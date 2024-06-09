@@ -1,18 +1,18 @@
 import { api } from '@/lib/axios'
 
 export interface getTopFiveReportsResponse {
-  reportID: string
-  userID: string
-  postID: string
+  reportID: string | null
+  userID: number | undefined
+  postID: string | null
   title: string
   description: string
   reportedAt: string
 }
 
 interface apiResponse {
-  idDenuncia: string
-  idUsuario: string
-  idPostagem: string
+  idDenuncia: string | null
+  idUsuario: number | undefined
+  idPostagem: string | null
   tituloDenuncia: string
   descricaoDenuncia: string
   dataDenuncia: string
