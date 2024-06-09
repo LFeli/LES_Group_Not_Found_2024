@@ -37,6 +37,19 @@ interface apiResponse {
   status: string
 }
 
+type StatusInput = 'N' | 'P' | 'A' | string
+type StatusOutput = 'Pendente' | 'Rejeitado' | 'Aprovado' | string
+
+const statusMap: { [key: string]: StatusOutput } = {
+  N: 'Rejeitado',
+  P: 'Pendente',
+  A: 'Aprovado',
+}
+
+function getStatus(value: StatusInput): StatusOutput {
+  return statusMap[value] || 'Pendente'
+}
+
 function getDonationTypes(item: apiResponse): string[] {
   const donationTypes = []
 
@@ -58,7 +71,7 @@ function convertApiResponse(
     userID: item.idUsuario,
     admID: item.idAdministrador,
     publishedAt: item.dtPublicacao,
-    approvalAt: item.dtAprovacao,
+    approvalAt: item.dtAprovacao === null ? 'Pendente' : item.dtAprovacao,
     donationType: getDonationTypes(item),
     title: item.titulo,
     description: item.conteudo,
@@ -67,7 +80,7 @@ function convertApiResponse(
     donationGoal: item.metaDoacao,
     donationsRaised: item.valorArrecadado,
     admMessage: item.msgAdministrador,
-    status: item.status,
+    status: getStatus(item.status),
   }))
 }
 
