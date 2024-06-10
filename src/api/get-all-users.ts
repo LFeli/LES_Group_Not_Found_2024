@@ -14,6 +14,7 @@ export interface getAllUsersResponse {
   addressCep: string
   addressCity: string
   addressState: string
+  status: string
 }
 
 export interface apiResponse {
@@ -30,6 +31,7 @@ export interface apiResponse {
   cep: string
   municipio: string
   estado: string
+  status: string
 }
 
 function convertApiResponse(
@@ -51,6 +53,7 @@ function convertApiResponse(
     addressCep: item.cep,
     addressCity: item.municipio,
     addressState: item.estado,
+    status: item.status,
   }))
 }
 

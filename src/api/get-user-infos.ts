@@ -20,6 +20,7 @@ interface getUserInfosResponse {
   addressCep: string
   addressCity: string
   addressState: string
+  status: string
 }
 
 interface apiResponse {
@@ -36,6 +37,7 @@ interface apiResponse {
   cep: string
   municipio: string
   estado: string
+  status: string
 }
 
 function convertApiResponse(data: apiResponse): getUserInfosResponse {
@@ -54,6 +56,7 @@ function convertApiResponse(data: apiResponse): getUserInfosResponse {
     addressCep: data.cep,
     addressCity: data.municipio,
     addressState: data.estado,
+    status: data.status,
   }
 }
 

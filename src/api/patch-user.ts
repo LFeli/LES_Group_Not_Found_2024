@@ -14,6 +14,7 @@ export interface patchUserBody {
   addressCep: string
   addressCity: string
   addressState: string
+  status: string
 }
 
 interface apiBody {
@@ -48,7 +49,7 @@ function convertApiBody(data: patchUserBody): apiBody {
     cep: data.addressCep,
     municipio: data.addressCity,
     estado: data.addressState,
-    status: 'A',
+    status: data.status === '' ? 'A' : data.status,
   }
 }
 
