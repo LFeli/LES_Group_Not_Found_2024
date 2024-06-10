@@ -2,7 +2,7 @@ import { api } from '@/lib/axios'
 import { getInitials } from '@/utils/get-name-initials'
 
 interface getUserInfosProps {
-  userID: number | undefined
+  userID: number | string | undefined
 }
 
 interface getUserInfosResponse {
