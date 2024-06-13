@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table'
-import { format } from 'date-fns'
 
+// import { format } from 'date-fns'
 import { DataTableColumnHeader } from '@/components/data-table-column-header'
 
 import { DonationsDataTableSchema } from '../schemas/data-donations-schema'
@@ -34,7 +34,7 @@ export const columns: ColumnDef<DonationsDataTableSchema>[] = [
   {
     accessorKey: 'donationValue',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Valor" />
+      <DataTableColumnHeader column={column} title="Valor da doação" />
     ),
     cell: ({ row }) => (
       <div>
@@ -54,6 +54,18 @@ export const columns: ColumnDef<DonationsDataTableSchema>[] = [
     cell: ({ row }) => (
       <div>
         <span className="font-medium">{row.getValue('donatedAt')}</span>
+      </div>
+    ),
+  },
+
+  {
+    accessorKey: 'voucher',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Cupom do voucher" />
+    ),
+    cell: ({ row }) => (
+      <div>
+        <span className="font-medium">{row.getValue('voucher')}</span>
       </div>
     ),
   },

@@ -1,22 +1,21 @@
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 
-import { getUserDonations } from '@/api/get-user-donations'
-import { useAuth } from '@/context/auth-context'
-
+// import { getUserDonations } from '@/api/get-user-donations'
+// import { useAuth } from '@/context/auth-context'
 import { DataTable } from './components/data-table'
 import { columns } from './components/data-table-columns'
 import jsonData from './fake-data.json'
 
 export function DonationsAuth() {
-  const { user } = useAuth()
+  // const { user } = useAuth()
 
-  const { data: userDonations, isPending } = useQuery({
-    queryFn: () => getUserDonations({ userID: user?.idUser }),
-    queryKey: ['userDonations', 'donations'],
-  })
+  // const { data: userDonations, isPending } = useQuery({
+  //   queryFn: () => getUserDonations({ userID: user?.idUser }),
+  //   queryKey: ['userDonations', 'donations'],
+  // })
 
-  console.log(userDonations)
+  // console.log(userDonations)
 
   return (
     <main className="flex-1 font-karla">
@@ -35,11 +34,13 @@ export function DonationsAuth() {
           </p>
         </div>
 
-        {isPending ? (
+        {/* {isPending ? (
           <div>carregando...</div>
         ) : (
-          <DataTable columns={columns} data={userDonations} />
-        )}
+          } />
+        )} */}
+
+        <DataTable columns={columns} data={jsonData} />
       </div>
     </main>
   )
