@@ -21,9 +21,6 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-import { DataTableFooter } from './data-table-footer'
-import { DataTableToolbar } from './data-table-toolbar'
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
@@ -54,8 +51,6 @@ export function DataTable<TData, TValue>({
 
   return (
     <article className="w-full space-y-4">
-      <DataTableToolbar table={table} />
-
       <div className="rounded-md border bg-background">
         <Table className="max-w-full">
           <TableHeader>
@@ -107,8 +102,6 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-
-      <DataTableFooter table={table} />
     </article>
   )
 }

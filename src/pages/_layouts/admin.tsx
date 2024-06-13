@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
+import { Header } from '../admin/components/header'
 import { Footer } from '../auth/components/footer'
-import { Header } from '../auth/components/header'
 
 export function AdminLayout() {
   return (
