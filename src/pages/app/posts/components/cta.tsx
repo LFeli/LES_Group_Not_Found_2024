@@ -1,7 +1,4 @@
-import { Link } from 'react-router-dom'
-
 import ctaPhoto from '@/assets/app/home/cta-posts.jpg'
-import { Button } from '@/components/ui/button'
 
 export function Cta() {
   return (
@@ -15,14 +12,6 @@ export function Cta() {
           Não fique indiferente! Dê uma mãozinha para um animalzinho que precise
           de ajuda. Faça sua contribuição agora mesmo e ajude a nossa causa!
         </p>
-
-        <div className="space-x-8">
-          <Link to={'/login'}>
-            <Button className="rounded-full bg-jeans-700 px-6 py-6 text-zinc-100 hover:bg-jeans-500">
-              Doar Agora
-            </Button>
-          </Link>
-        </div>
       </div>
 
       <img

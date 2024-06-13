@@ -1,4 +1,3 @@
-import { ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import ctaPhoto from '@/assets/app/home/cta.jpg'
@@ -22,15 +21,6 @@ export function Cta() {
           <Link to={'/login'}>
             <Button className="rounded-full bg-jeans-700 px-6 py-6 text-zinc-100 hover:bg-jeans-500">
               Doar Agora
-            </Button>
-          </Link>
-
-          <Link to={'/'}>
-            <Button
-              variant={'ghost'}
-              className="gap-2 rounded-full px-6 py-6 hover:bg-jeans-50"
-            >
-              Saiba Mais <ChevronRight className="h-5 w-5" />
             </Button>
           </Link>
         </div>

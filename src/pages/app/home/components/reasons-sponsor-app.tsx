@@ -1,4 +1,4 @@
-import { Handshake, Heart, Send } from 'lucide-react'
+import { Handshake, Heart, LineChart, Send } from 'lucide-react'
 
 export function ReasonsSponsor() {
   return (
@@ -59,15 +59,16 @@ export function ReasonsSponsor() {
 
         <article className="min-h-[356px] max-w-80 space-y-5 rounded-[20px] rounded-br-[60px] border-4 border-green-300 bg-green-200 p-7">
           <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-yellow-400">
-            <Handshake className="h-10 w-10" />
+            <LineChart className="h-10 w-10" />
           </div>
 
           <h4 className="text-center font-rubik text-lg font-semibold">
-            Transparência total
+            Acompanhamento
           </h4>
           <p className="text-center font-medium leading-relaxed">
-            Valorizamos a confiança e a transparência. Sua doação é usada com
-            responsabilidade diretamente para ajudar animais necessitados.
+            Com o Oh My Dog, você pode acompanhar o progresso de cada animal que
+            ajudou, desde o momento da doação até a adoção final, garantindo
+            transparência e impacto direto.
           </p>
         </article>
       </div>

@@ -29,28 +29,100 @@ export function Testimonials() {
         className="relative w-full"
       >
         <CarouselContent className="ml-0 flex items-center gap-12">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <CarouselItem
-              key={index}
-              className="max-w-[424px] overflow-hidden rounded-lg border-[4px] border-yellow-400 px-6 py-8"
-            >
-              <div className="flex flex-col gap-4">
-                <span className="flex items-center gap-4">
-                  <Quote />
-                  <span className="font-rubik text-lg font-semibold">
-                    Ana Rodrigues (Rações especiais)
-                  </span>
+          <CarouselItem className="h-[332px] max-w-[424px] overflow-hidden rounded-lg border-[4px] border-yellow-400 px-6 py-8">
+            <div className="flex flex-col gap-4">
+              <span className="flex items-center gap-4">
+                <Quote />
+                <span className="font-rubik text-lg font-semibold">
+                  Ana Rodrigues (Rações especiais)
                 </span>
-                <span className="text-zinc-800">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptate, laudantium. Provident, necessitatibus doloremque?
-                  Expedita quod saepe reiciendis eos. Et tempore facilis
-                  corporis ad voluptatum, ab iure reprehenderit labore earum
-                  veritatis!
+              </span>
+              <span className="text-zinc-800">
+                Desde que me tornei patrocinador deste site dedicado à causa
+                animal, minha visão sobre o impacto que podemos ter na vida dos
+                animais mudou profundamente. Ao contribuir regularmente,
+                sinto-me parte de algo maior, algo que transcende meu dia a dia.
+                Ver o progresso, os resgates realizados e as histórias de
+                sucesso de animais salvos enche meu coração de gratidão e
+                esperança.
+              </span>
+            </div>
+          </CarouselItem>
+
+          <CarouselItem className="h-[332px] max-w-[424px] overflow-hidden rounded-lg border-[4px] border-yellow-400 px-6 py-8">
+            <div className="flex flex-col gap-4">
+              <span className="flex items-center gap-4">
+                <Quote />
+                <span className="font-rubik text-lg font-semibold">
+                  Marco Flores (PetNosso)
                 </span>
-              </div>
-            </CarouselItem>
-          ))}
+              </span>
+              <span className="text-zinc-800">
+                Como patrocinador do Oh My Dog, testemunhei em primeira mão o
+                poder da comunidade unida em prol de uma causa nobre. Cada
+                contribuição, por menor que seja, faz a diferença na vida dos
+                animais necessitados. É uma honra fazer parte dessa rede de
+                apoio e ver o impacto positivo que podemos alcançar juntos.
+              </span>
+            </div>
+          </CarouselItem>
+
+          <CarouselItem className="h-[332px] max-w-[424px] overflow-hidden rounded-lg border-[4px] border-yellow-400 px-6 py-8">
+            <div className="flex flex-col gap-4">
+              <span className="flex items-center gap-4">
+                <Quote />
+                <span className="font-rubik text-lg font-semibold">
+                  Jessica Campos (Banho & Pets)
+                </span>
+              </span>
+              <span className="text-zinc-800">
+                Ser um patrocinador do Oh My Dog tem sido uma jornada
+                emocionante e gratificante. Ao apoiar financeiramente as
+                iniciativas em prol dos animais, sinto-me conectado a uma
+                comunidade comprometida com a compaixão e o cuidado com os seres
+                mais vulneráveis. Cada doação é um ato de amor que contribui
+                para um mundo melhor para nossos amigos de quatro patas.
+              </span>
+            </div>
+          </CarouselItem>
+
+          <CarouselItem className="h-[332px] max-w-[424px] overflow-hidden rounded-lg border-[4px] border-yellow-400 px-6 py-8">
+            <div className="flex flex-col gap-4">
+              <span className="flex items-center gap-4">
+                <Quote />
+                <span className="font-rubik text-lg font-semibold">
+                  Bruna Ramos (Pet & Pets)
+                </span>
+              </span>
+              <span className="text-zinc-800">
+                Minha experiência como patrocinador dedicado à causa animal tem
+                sido enriquecedora em muitos aspectos. Além de proporcionar
+                recursos financeiros para resgates e tratamentos veterinários,
+                essa jornada me ensinou sobre empatia, solidariedade e
+                responsabilidade social. Estou orgulhoso de fazer parte dessa
+                missão de proteger e cuidar dos animais em situação de risco
+              </span>
+            </div>
+          </CarouselItem>
+
+          <CarouselItem className="h-[332px] max-w-[424px] overflow-hidden rounded-lg border-[4px] border-yellow-400 px-6 py-8">
+            <div className="flex flex-col gap-4">
+              <span className="flex items-center gap-4">
+                <Quote />
+                <span className="font-rubik text-lg font-semibold">
+                  Ramon Garcia (PetShop sim)
+                </span>
+              </span>
+              <span className="text-zinc-800">
+                Como patrocinador deste site de doações para a causa animal,
+                tenho testemunhado o poder transformador da generosidade humana.
+                Cada contribuição que faço é um investimento no bem-estar dos
+                animais e na construção de um mundo mais compassivo e justo. É
+                uma experiência gratificante saber que estou fazendo a diferença
+                na vida de tantos seres indefesos.
+              </span>
+            </div>
+          </CarouselItem>
         </CarouselContent>
 
         <div className="absolute -bottom-12 right-12 w-6">
