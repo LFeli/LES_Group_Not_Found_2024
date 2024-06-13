@@ -16,9 +16,7 @@ export function ReportAuth() {
             <span className="text-yellow-600"> Denúncias</span>
           </h1>
           <p className="block py-8 text-lg font-medium leading-relaxed text-zinc-500">
-            Veja em abaixo na tabela todas as doações que você em prol da causa
-            animal, possivel ver status da postagem, valor doado, quando foi
-            dado e muito mais.
+            Veja em abaixo na tabela todas as suas denúncias.
           </p>
         </div>
 

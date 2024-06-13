@@ -1,20 +1,20 @@
 [
   {
-    "reportedTitle": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis.",
+    "reportedTitle": "Já vi está publicação em 3 postagens diferentes",
     "reportedDescription": "Spam",
     "reportedAt": "06/06/2024",
     "postID": "1"
   },
 
   {
-    "reportedTitle": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis.",
+    "reportedTitle": "Conteúdo desse post foi roubado da minha postagem original!!!",
     "reportedDescription": "Conteúdo falso",
     "reportedAt": "06/06/2024",
     "postID": "2"
   },
 
   {
-    "reportedTitle": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis, Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum esse nihil nostrum numquam voluptatibus vitae, natus, obcaecati consectetur neque mollitia eum sit impedit in dolorem veritatis iure soluta iste officiis..",
+    "reportedTitle": "Já apareceu 5 vezes diferentes na minha timeline",
     "reportedDescription": "Spam",
     "reportedAt": "06/06/2024",
     "postID": "3"

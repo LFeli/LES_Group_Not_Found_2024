@@ -56,7 +56,7 @@ export function DataTable<TData, TValue>({
     <article className="w-full space-y-4">
       <DataTableToolbar table={table} />
 
-      <div className="rounded-md border">
+      <div className="rounded-md border bg-background">
         <Table className="max-w-full">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
