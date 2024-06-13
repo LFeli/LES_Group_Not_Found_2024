@@ -19,12 +19,11 @@ export function AdminManageUsers() {
       <div className="container flex max-w-screen-2xl flex-col items-center justify-center space-y-8 px-6 py-32">
         <div className="max-w-4xl text-center">
           <h1 className="font-rubik text-7xl font-semibold">
-            Postagens para
-            <span className="text-yellow-600"> aprovação</span>
+            Gerenciar todos os
+            <span className="text-yellow-600"> usuários</span>
           </h1>
           <p className="block py-8 text-lg font-medium leading-relaxed text-zinc-500">
-            Gerencie abaixo todas as postagens, podendo aprovar, reprovar,
-            visualizar a postagem e muito mais.
+            Gerencie abaixo todas os usuários.
           </p>
         </div>
 

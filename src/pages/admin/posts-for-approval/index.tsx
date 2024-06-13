@@ -23,8 +23,7 @@ export function AdminPostsForApproval() {
             <span className="text-yellow-600"> aprovação</span>
           </h1>
           <p className="block py-8 text-lg font-medium leading-relaxed text-zinc-500">
-            Gerencie abaixo todas as postagens, podendo aprovar, reprovar,
-            visualizar a postagem e muito mais.
+            Gerencie abaixo todas as postagens.
           </p>
         </div>
 
