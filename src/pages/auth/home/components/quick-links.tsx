@@ -1,5 +1,5 @@
 import { Dialog } from '@radix-ui/react-dialog'
-import { Files, HandHeart, PlusCircle, Send, TicketPercent } from 'lucide-react'
+import { Files, HandHeart, PlusCircle, TicketPercent } from 'lucide-react'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -16,9 +16,8 @@ export function QuickLinks() {
       <div className="mr-auto max-w-[900px] space-y-8">
         <h1 className="font-rubik text-8xl font-semibold">Acesso rápido</h1>
         <p className="block py-0 text-lg font-medium leading-relaxed text-zinc-500">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis totam
-          eaque adipisci modi natus esse, omnis nobis quo. Laudantium non labore
-          fugit aliquid quo harum facilis consequuntur! Ex, qui tempora.
+          Tenha acesso rápido as principais funções da sua conta apenas um
+          clique.
         </p>
       </div>
 
@@ -82,7 +81,7 @@ export function QuickLinks() {
           </Button>
         </article>
 
-        <article className="rounded-md">
+        {/* <article className="rounded-md">
           <Button
             variant={'ghost'}
             onClick={() => setIsNewVoucherDialog(true)}
@@ -101,9 +100,9 @@ export function QuickLinks() {
               </span>
             </span>
           </Button>
-        </article>
+        </article> */}
 
-        <article className="rounded-md">
+        {/* <article className="rounded-md">
           <Button
             variant={'ghost'}
             className="group h-20 whitespace-normal p-0 hover:bg-green-50"
@@ -121,7 +120,7 @@ export function QuickLinks() {
               </span>
             </span>
           </Button>
-        </article>
+        </article> */}
 
         <article className="rounded-md">
           <Button

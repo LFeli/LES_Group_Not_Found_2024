@@ -22,8 +22,7 @@ export function MyPosts() {
       <div className="max-w-5xl text-center">
         <h2 className="font-rubik text-7xl font-semibold">Minhas postagens</h2>
         <p className="block py-8 text-lg font-medium leading-relaxed text-zinc-500">
-          Nessa seção, você terá acesso a todas as suas postagens, desde aquelas
-          que estão ativas até aquelas que já alcançaram sua meta
+          Veja todas as suas postagens e doações que você recebeu em nosso site.
         </p>
       </div>
 
