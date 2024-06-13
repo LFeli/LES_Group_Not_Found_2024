@@ -57,10 +57,7 @@ export function UserMenu() {
     <>
       <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant={'outline'}
-            className="group space-x-4 bg-transparent"
-          >
+          <Button variant={'outline'} className="group space-x-4 bg-background">
             <span className="font-rubik text-base">Olá {user?.name}</span>
 
             <ChevronDown className="duration-50000 transition-transform group-data-[state=open]:rotate-180" />

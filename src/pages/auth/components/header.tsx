@@ -14,11 +14,13 @@ export function Header() {
           <span className="text-2xl font-semibold">Oh My Dog.</span>
         </div>
 
-        <nav className="relative flex items-center space-x-12">
+        <nav className="relative flex items-center space-x-8">
           <NavLink to="/app/">Home</NavLink>
-          <NavLink to="/app/postagens">Postagens</NavLink>
-          <NavLink to="/app/patrocinador">Patrocinador</NavLink>
-          <NavLink to="/app/doacoes">Contribuições</NavLink>
+          <NavLink to="/app/postagens">Quero contribuir</NavLink>
+          <NavLink to="/app/meus-posts">Minhas postagens</NavLink>
+          <NavLink to="/app/patrocinador">Torna-se um patrocinador</NavLink>
+          <NavLink to="/app/doacoes">Doações realizadas</NavLink>
+          <NavLink to="/app/denuncia">Denúncias</NavLink>
         </nav>
 
         <UserMenu />
