@@ -1,17 +1,21 @@
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
 
-import { getTopThreePosts } from '@/api/get-top-three-posts'
-import { PostCard } from '@/components/post-card'
+// import { getTopThreePosts } from '@/api/get-top-three-posts'
+// import { PostCard } from '@/components/post-card'
 import { Button } from '@/components/ui/button'
-import { useAuth } from '@/context/auth-context'
+
+// import { useAuth } from '@/context/auth-context'
+import data from '../../user-posts/fake-data.json'
+import { columns } from './user-post-columns'
+import { DataTable } from './user-post-data-table'
 
 export function MyPosts() {
-  const { user } = useAuth()
+  // const { user } = useAuth()
 
-  const { data: topThreePosts } = useQuery({
-    queryFn: () => getTopThreePosts({ userID: user?.idUser }),
-    queryKey: ['post', 'all-posts'],
-  })
+  // const { data: topThreePosts } = useQuery({
+  //   queryFn: () => getTopThreePosts({ userID: user?.idUser }),
+  //   queryKey: ['post', 'all-posts'],
+  // })
 
   return (
     <section className="flex flex-col items-center justify-center pb-32">
@@ -23,15 +27,7 @@ export function MyPosts() {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-10 pt-16">
-        {topThreePosts?.map((post) => (
-          <PostCard
-            key={post.postID}
-            content={post.content}
-            status={post.status}
-          />
-        ))}
-      </div>
+      <DataTable columns={columns} data={data} />
 
       <Button className="mt-16 rounded-full bg-green-500 px-12 py-6 text-base font-medium text-black hover:bg-green-600">
         Ver minhas publicações
