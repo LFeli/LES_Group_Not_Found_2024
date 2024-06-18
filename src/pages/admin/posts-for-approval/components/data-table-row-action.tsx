@@ -49,7 +49,10 @@ export function DataTableRowActions<TData>({
       </DropdownMenuContent>
 
       <Dialog open={isViewPostDialog} onOpenChange={setIsViewPostDialog}>
-        <ApprovalDialog postID={link.postID} />
+        <ApprovalDialog
+          postID={link.postID}
+          closeDialog={() => setIsViewPostDialog(false)}
+        />
       </Dialog>
     </DropdownMenu>
   )

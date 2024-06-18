@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 import { getPostInfos } from '@/api/get-post-infos'
+import { patchApprovePost } from '@/api/patch-approve-post'
 import { Button } from '@/components/ui/button'
 import {
   DialogContent,
@@ -31,12 +32,17 @@ import {
 
 interface ApprovalDialogProps {
   postID: string
+  closeDialog: () => void
 }
 
-export function ApprovalDialog({ postID }: ApprovalDialogProps) {
+export function ApprovalDialog({ postID, closeDialog }: ApprovalDialogProps) {
   const { data: postInfo } = useQuery({
     queryFn: () => getPostInfos({ userID: postID }),
     queryKey: ['get-posts-infos', 'posts'],
+  })
+
+  const { mutateAsync: patchApprovePostFn } = useMutation({
+    mutationFn: patchApprovePost,
   })
 
   const {
@@ -48,9 +54,17 @@ export function ApprovalDialog({ postID }: ApprovalDialogProps) {
     resolver: zodResolver(approvalSchema),
   })
 
-  function onFormSubmit(data: ApprovalFormSchema) {
+  async function onFormSubmit(data: ApprovalFormSchema) {
     try {
-      console.log(data)
+      const formattedBody = {
+        approveAt: '',
+        admMessage: data.message,
+        status: data.status,
+      }
+
+      await patchApprovePostFn(formattedBody)
+
+      closeDialog()
       reset()
       toast.success('Atualização da postagem feita com sucesso!')
     } catch {
