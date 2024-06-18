@@ -6,12 +6,13 @@ import { sponsorDataTableSchema } from '../../sponsor-for-approval/schemas/spons
 
 // import { DataTableRowActions } from './data-table-row-action'
 
-type StatusInput = 'N' | 'A' | string
-type StatusOutput = 'Desativado' | 'Ativado' | string
+type StatusInput = 'N' | 'A' | 'P' | string
+type StatusOutput = 'Desativado' | 'Ativado' | 'Pendente' | string
 
 const statusMap: { [key: string]: StatusOutput } = {
   N: 'Desativado',
   A: 'Ativado',
+  P: 'Pendente',
 }
 
 function getStatus(value: StatusInput): StatusOutput {
