@@ -12,7 +12,7 @@ import { Separator } from '@/components/ui/separator'
 import { ReportsDataTableSchema } from '../schemas/data-table-reports-schema'
 
 interface ReportedPostDialogProps {
-  voucherID: string | undefined
+  voucherID: number | string | undefined
   reportContent: ReportsDataTableSchema | undefined
 }
 
@@ -20,7 +20,7 @@ export function ReportedPostDialog({
   voucherID,
   reportContent,
 }: ReportedPostDialogProps) {
-  const { data: postInfo, isFetching } = useQuery({
+  const { data: postInfo } = useQuery({
     queryFn: () => getPostInfos({ userID: voucherID }),
     queryKey: ['get-posts-infos', 'posts'],
   })
@@ -95,7 +95,7 @@ export function ReportedPostDialog({
               Titulo da denuncia
             </span>
             <span className="order block overflow-hidden rounded-md border-2 border-b px-4 py-2 font-karla text-sm font-medium leading-relaxed text-zinc-700">
-              {reportContent?.reportedTitle}
+              {reportContent?.title}
             </span>
           </div>
 
@@ -104,7 +104,7 @@ export function ReportedPostDialog({
               Motivo da denuncia
             </span>
             <span className="order block overflow-hidden rounded-md border-2 border-b px-4 py-2 font-karla text-sm font-medium leading-relaxed text-zinc-700">
-              {reportContent?.reportedDescription}
+              {reportContent?.description}
             </span>
           </div>
 

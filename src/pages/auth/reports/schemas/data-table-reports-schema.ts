@@ -1,10 +1,10 @@
 import { z } from 'zod'
 
 export const ReportsSchema = z.object({
-  reportedTitle: z.string(),
-  reportedDescription: z.string(),
+  title: z.string(),
+  description: z.string(),
   reportedAt: z.string(),
-  postID: z.string(),
+  postID: z.number(),
 })
 
 export type ReportsDataTableSchema = z.infer<typeof ReportsSchema>

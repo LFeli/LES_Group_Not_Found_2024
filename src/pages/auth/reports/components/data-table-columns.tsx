@@ -7,25 +7,25 @@ import { DataTableRowActions } from './data-table-row-actions'
 
 export const columns: ColumnDef<ReportsDataTableSchema>[] = [
   {
-    accessorKey: 'reportedTitle',
+    accessorKey: 'title',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Título" />
     ),
     cell: ({ row }) => (
       <div className="w-full max-w-[400px] truncate font-medium">
-        <span>{row.getValue('reportedTitle')}</span>
+        <span>{row.getValue('title')}</span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'reportedDescription',
+    accessorKey: 'description',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Motivo da denúncia" />
     ),
     cell: ({ row }) => (
       <div className="truncate font-medium">
-        <span>{row.getValue('reportedDescription')}</span>
+        <span>{row.getValue('description')}</span>
       </div>
     ),
   },

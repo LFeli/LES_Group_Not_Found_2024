@@ -1,10 +1,22 @@
+import { useQuery } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
+
+import { getAllUserReports } from '@/api/get-all-user-reports'
+import { useAuth } from '@/context/auth-context'
 
 import { DataTable } from './components/data-table'
 import { columns } from './components/data-table-columns'
-import jsonData from './fake-data.json'
 
 export function ReportAuth() {
+  const { user } = useAuth()
+
+  const { data: userReports, isPending } = useQuery({
+    queryFn: () => getAllUserReports({ userID: user?.idUser }),
+    queryKey: ['all-reports', `all-reports-${user?.idUser}`],
+  })
+
+  console.log(userReports)
+
   return (
     <main className="flex-1 font-karla">
       <Helmet title="Denúncias" />
@@ -20,7 +32,11 @@ export function ReportAuth() {
           </p>
         </div>
 
-        <DataTable columns={columns} data={jsonData} />
+        {isPending ? (
+          <div>carregando...</div>
+        ) : (
+          <DataTable columns={columns} data={userReports} />
+        )}
       </div>
     </main>
   )
