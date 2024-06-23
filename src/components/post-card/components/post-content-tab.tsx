@@ -46,10 +46,13 @@ export function PostContentTab({
     control,
     handleSubmit,
     reset,
+    watch,
     formState: { isSubmitting, errors },
   } = useForm<PostTabSchemaForm>({
     resolver: zodResolver(postTabSchema),
   })
+
+  const donationType = watch('donationType')
 
   const { mutateAsync: postNewDonationFn, isPending } = useMutation({
     mutationFn: postNewDonation,
@@ -62,7 +65,8 @@ export function PostContentTab({
         postID,
         donationValue: formatToFloat(data.value),
         donationMessage: data.message,
-        proofPix: 'URL AI MEU',
+        // proofPix: data.proofPix[0],
+        proofPix: 'url de exemplo',
         donationType: data.donationType,
       }
 
@@ -135,7 +139,7 @@ export function PostContentTab({
           </span>
         </article>
 
-        {user && location.pathname === '/postagens' && (
+        {!user && location.pathname === '/postagens' && (
           <div className="flex items-center justify-center">
             <Link to={'/login'} className="mx-auto block pt-4">
               <Button className="bg-green-500 text-zinc-900 hover:bg-green-600">
@@ -194,41 +198,45 @@ export function PostContentTab({
                 />
 
                 <ErrorMessage
-                  error={errors.value}
+                  error={errors.donationType}
                   placeholder="Selecione o tipo da doação aqui."
                 />
               </article>
 
-              <article className="mx-1 space-y-2">
-                <Label htmlFor="value">Valor</Label>
-                <Input
-                  id="value"
-                  type="text"
-                  {...register('value')}
-                  disabled={isSubmitting || isPending}
-                />
+              {donationType === '1' && (
+                <article className="mx-1 space-y-2">
+                  <Label htmlFor="value">Valor</Label>
+                  <Input
+                    id="value"
+                    type="text"
+                    {...register('value')}
+                    disabled={isSubmitting || isPending}
+                  />
 
-                <ErrorMessage
-                  error={errors.value}
-                  placeholder="Insira o valor que deseja doar aqui."
-                />
-              </article>
+                  <ErrorMessage
+                    error={errors.value}
+                    placeholder="Insira o valor que deseja doar aqui."
+                  />
+                </article>
+              )}
 
-              <article className="mx-1 space-y-2">
-                <Label htmlFor="proofPix">Comprovante Pix</Label>
-                <Input
-                  id="proofPix"
-                  type="file"
-                  accept="image/*"
-                  disabled={isSubmitting || isPending}
-                  {...register('proofPix')}
-                />
+              {donationType === '1' && (
+                <article className="mx-1 space-y-2">
+                  <Label htmlFor="proofPix">Comprovante Pix</Label>
+                  <Input
+                    id="proofPix"
+                    type="file"
+                    accept="image/*"
+                    disabled={isSubmitting || isPending}
+                    {...register('proofPix')}
+                  />
 
-                <ErrorMessage
-                  error={errors.proofPix}
-                  placeholder="Insira seu comprovante pix aqui."
-                />
-              </article>
+                  <ErrorMessage
+                    error={errors.proofPix}
+                    placeholder="Insira seu comprovante pix aqui."
+                  />
+                </article>
+              )}
 
               <article className="mx-1 space-y-2">
                 <Label htmlFor="message">Mensagem da doação</Label>
