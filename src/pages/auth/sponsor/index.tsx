@@ -42,7 +42,7 @@ export function SponsorAuth() {
           <div className="container flex max-w-screen-2xl flex-col items-center justify-center space-y-8 px-6 py-32">
             <div className="max-w-3xl text-center">
               <h1 className="font-rubik text-7xl font-semibold">
-                Todas os meus
+                Todos os meus
                 <span className="text-yellow-600"> vouchers</span>
               </h1>
               <p className="block py-8 text-lg font-medium leading-relaxed text-zinc-500">

@@ -5,7 +5,7 @@ export function Cta() {
     <section className="flex items-start justify-between pb-32 pt-10">
       <div className="max-w-[600px]">
         <h1 className="font-rubik text-8xl font-semibold">
-          Transformes vidas,
+          Transforme vidas,
           <span className="text-yellow-600"> apoie nossa causa</span>
         </h1>
         <p className="block py-8 text-lg font-medium leading-relaxed text-zinc-500">
