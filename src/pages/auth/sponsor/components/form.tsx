@@ -1,28 +1,46 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
+import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
+import { postNewSponsor } from '@/api/post-new-sponsor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { useAuth } from '@/context/auth-context'
 
 import { SponsorFormSchema, sponsorSchema } from '../schemas/sponsor-schema'
 
 export function Form() {
+  const { user } = useAuth()
+  const { mutateAsync: postNewSponsorFn } = useMutation({
+    mutationFn: postNewSponsor,
+  })
+
   const {
     register,
     handleSubmit,
+    control,
     reset,
     formState: { isSubmitting, errors },
   } = useForm<SponsorFormSchema>({
     resolver: zodResolver(sponsorSchema),
   })
 
-  function onFormSubmit(data: SponsorFormSchema) {
+  async function onFormSubmit(data: SponsorFormSchema) {
     try {
-      console.log(data)
+      const formattedData = {
+        userID: user?.idUser,
+        cnpj: data.cnpj,
+        corporateName: data.corporateName,
+        stateRegistration: data.stateRegistration,
+        description: data.description,
+      }
+
+      await postNewSponsorFn(formattedData)
       reset()
-      toast.success('Seu cadastro foi enviado com sucesso!')
+      toast.success('Seu cadastro foi enviado para aprovação!')
     } catch {
       toast.error('Erro ao enviar o seu cadastro! Por favor tente novamente.')
     }
@@ -111,14 +129,19 @@ export function Form() {
 
       <article className="w-full space-y-2">
         <Label htmlFor="description" className="font-rubik">
-          Inscrição estadual
+          Breve descrição
         </Label>
-        <Input
-          type="text"
-          id="description"
-          disabled={isSubmitting}
-          placeholder="Sua mensagem aqui..."
-          {...register('description')}
+        <Controller
+          name="description"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Textarea
+              placeholder="Sua mensagem aqui"
+              className="resize-y"
+              {...field}
+            />
+          )}
         />
 
         {errors.description && (
