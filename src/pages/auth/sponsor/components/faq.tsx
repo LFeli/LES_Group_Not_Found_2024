@@ -35,37 +35,40 @@ export function Faq() {
 
           <AccordionItem value="item-2">
             <AccordionTrigger className="font-rubik text-2xl text-zinc-800">
-              O que e o Oh My Dog?
+              Por que doar?
             </AccordionTrigger>
             <AccordionContent className="py-8 text-lg font-medium leading-relaxed text-zinc-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Dignissimos, quia? Voluptate beatae voluptatum a qui dolor
-              quisquam id perspiciatis? Error voluptate odit molestiae quis
-              alias earum a consequuntur. Quia, id!
+              Doar para a causa animal salva vidas. Sua contribuição ajuda a
+              fornecer cuidados médicos, alimentação e abrigo para animais
+              abandonados e necessitados. Cada doação faz uma diferença real,
+              garantindo que mais animais recebam o cuidado e o amor que
+              merecem. Ajude a transformar vidas e doe hoje!
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-3">
             <AccordionTrigger className="font-rubik text-2xl text-zinc-800">
-              Por que doar?
+              Vantagens de fazer uma doação
             </AccordionTrigger>
             <AccordionContent className="py-8 text-lg font-medium leading-relaxed text-zinc-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Dignissimos, quia? Voluptate beatae voluptatum a qui dolor
-              quisquam id perspiciatis? Error voluptate odit molestiae quis
-              alias earum a consequuntur. Quia, id!
+              Salva Vidas: Sua doação fornece cuidados médicos, alimentação e
+              abrigo para animais necessitados. Bem-Estar Animal: Ajuda a
+              melhorar a qualidade de vida de animais resgatados,
+              proporcionando-lhes segurança e conforto. Comunidade Mais
+              Saudável: Contribui para reduzir o número de animais abandonados
+              nas ruas, promovendo um ambiente mais seguro e saudável.
+              Satisfação Pessoal: Sentimento de realização e alegria ao saber
+              que você está fazendo a diferença na vida de animais indefesos.
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-4">
             <AccordionTrigger className="font-rubik text-2xl text-zinc-800">
-              Vantagens de fazer uma doação
+              Como me torno um patrocinador?
             </AccordionTrigger>
             <AccordionContent className="py-8 text-lg font-medium leading-relaxed text-zinc-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Dignissimos, quia? Voluptate beatae voluptatum a qui dolor
-              quisquam id perspiciatis? Error voluptate odit molestiae quis
-              alias earum a consequuntur. Quia, id!
+              Preencha o formulário acima com as informações da sua empresa, e
+              aguarde a aprovação dos nossos administradores.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
