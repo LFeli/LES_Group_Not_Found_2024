@@ -141,7 +141,7 @@ export function Form() {
           />
           <ErrorMessage
             error={errors.addressStreet}
-            placeholder="Insira seu Rua aqui."
+            placeholder="Insira sua Rua aqui."
           />
         </article>
 
@@ -204,7 +204,7 @@ export function Form() {
         </div>
 
         <article className="mx-1 space-y-2">
-          <Label htmlFor="password">Seu senha</Label>
+          <Label htmlFor="password">Sua senha</Label>
           <Input
             id="password"
             type="password"

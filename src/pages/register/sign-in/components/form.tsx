@@ -62,7 +62,7 @@ export function Form() {
 
       <article className="space-y-2">
         <Label htmlFor="password" className="font-rubik">
-          Seu senha
+          Sua senha
         </Label>
         <Input
           id="password"
