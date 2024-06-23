@@ -42,7 +42,11 @@ export function PostCardTrigger({
             <h4 className="max-w-[380px] break-words text-left font-rubik text-lg font-semibold">
               {title}
             </h4>
-            <span className="font-medium text-yellow-700">{donationsType}</span>
+            <span className="font-medium text-yellow-700">
+              {donationsType.length > 1
+                ? `${donationsType[0]} + ${donationsType.length - 1} opção`
+                : donationsType}
+            </span>
           </div>
 
           <p className="max-w-[380px] break-words text-left leading-relaxed">

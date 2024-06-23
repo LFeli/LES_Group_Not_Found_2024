@@ -85,7 +85,9 @@ export function PostContentTab({
                 {content.title}
               </h4>
               <span className="font-medium text-yellow-700">
-                {content.donationType[0]}
+                {content.donationType.length > 1
+                  ? `${content.donationType[0]} + ${content.donationType.length - 1} opção`
+                  : content.donationType}
               </span>
             </span>
           </div>
