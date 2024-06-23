@@ -55,9 +55,9 @@ export function PostReportTab({
       await postNewReportFn(formattedValues)
       closeDialog()
       reset()
-      toast.success('Sua doação foi enviado com sucesso!')
+      toast.success('Sua denúncia foi enviado com sucesso!')
     } catch {
-      toast.error('Erro ao enviar sua doação! Por favor tente novamente.')
+      toast.error('Erro ao enviar sua denúncia! Por favor tente novamente.')
     }
   }
 
