@@ -36,6 +36,7 @@ export function PostCard(data: PostCardProps) {
       <DialogContent className="max-h-[80vh] overflow-hidden">
         <PostTabs
           postID={data.postID}
+          status={data.status}
           content={data.content}
           closeDialog={handleCloseModal}
         />

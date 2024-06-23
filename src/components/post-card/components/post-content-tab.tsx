@@ -29,12 +29,14 @@ import { postTabSchema, PostTabSchemaForm } from '../schemas/post-schema'
 
 interface PostContentTabProps {
   postID: string
+  status: string
   content: postContent
   closeDialog: () => void
 }
 
 export function PostContentTab({
   postID,
+  status,
   content,
   closeDialog,
 }: PostContentTabProps) {
@@ -149,7 +151,7 @@ export function PostContentTab({
           </div>
         )}
 
-        {user && location.pathname !== '/postagens' && (
+        {user && location.pathname !== '/postagens' && status === 'A' && (
           <article className="space-y-4">
             <h4 className="font-rubik text-lg font-semibold">
               Realizar doação
