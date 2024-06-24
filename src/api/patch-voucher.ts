@@ -1,7 +1,8 @@
 import { api } from '@/lib/axios'
+import { formatToFloat } from '@/utils/format-to-float'
 
 interface patchVoucherBody {
-  voucherID: number | undefined
+  voucherID: number | string | undefined
   validateAt: string
   voucherName: string
   voucherValue: string
@@ -9,7 +10,7 @@ interface patchVoucherBody {
 }
 
 interface apiBody {
-  idVoucher: number | undefined
+  idVoucher: number | string | undefined
   dtVencimento: string
   cupom: string
   valor: string
@@ -21,7 +22,7 @@ function convertApiBody(data: patchVoucherBody): apiBody {
     idVoucher: data.voucherID,
     dtVencimento: data.validateAt,
     cupom: data.voucherName,
-    valor: data.voucherValue,
+    valor: formatToFloat(data.voucherValue),
     status: data.status,
   }
 }
@@ -30,7 +31,7 @@ export async function patchVoucher(body: patchVoucherBody) {
   try {
     const apiBodyFormat = convertApiBody(body)
 
-    await api.patch(`/Voucher/AtualizarVoucher/ `, apiBodyFormat)
+    await api.patch('/Voucher/AtualizarVoucher', apiBodyFormat)
   } catch (error) {
     throw new Error('Erro ao atualizar os valores de um voucher')
   }
