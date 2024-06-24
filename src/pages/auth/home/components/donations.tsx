@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
 
 import { getTopFiveDonations } from '@/api/get-top-five-donations'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/context/auth-context'
 
-import jsonData from '../fake-data.json'
 import { DataTable } from './data-table'
 import { columns } from './data-table-columns'
 
@@ -35,9 +35,12 @@ export function Donations() {
       ) : (
         <DataTable columns={columns} data={topFiveDonations} />
       )}
-      <Button className="mt-16 rounded-full bg-green-500 px-12 py-6 text-base font-medium text-black hover:bg-green-600">
-        Ver minhas doações
-      </Button>
+
+      <Link to={'/app/doacoes'}>
+        <Button className="mt-16 rounded-full bg-green-500 px-12 py-6 text-base font-medium text-black hover:bg-green-600">
+          Ver minhas doações
+        </Button>
+      </Link>
     </section>
   )
 }
