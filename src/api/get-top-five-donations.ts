@@ -18,6 +18,12 @@ interface apiResponse {
   status: string
 }
 
+const statusLabels: { [key: string]: string } = {
+  N: 'Não aprovada',
+  P: 'Em análise',
+  A: 'Aceita',
+}
+
 function convertApiResponse(
   data: apiResponse | apiResponse[],
 ): getTopFiveDonationsResponse[] {
@@ -27,7 +33,7 @@ function convertApiResponse(
     donationValue: item.valorDoacao,
     message: item.mensagem,
     donatedAt: item.dtDoacao,
-    status: item.status,
+    status: statusLabels[item.status] || 'Desconhecido',
   }))
 }
 
