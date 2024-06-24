@@ -65,67 +65,75 @@ export function UserMenu() {
         </DropdownMenuTrigger>
 
         <DropdownMenuContent align="end" className="w-[200px] bg-yellow-50">
-          <DropdownMenuLabel>Ações</DropdownMenuLabel>
-          <DropdownMenuSeparator />
+          {user?.userType !== 'A' && (
+            <>
+              <DropdownMenuLabel>Ações</DropdownMenuLabel>
+              <DropdownMenuSeparator />
 
-          <DropdownMenuItem
-            className="cursor-pointer space-x-3 focus:bg-green-100"
-            onClick={handleOpenNewPostDialog}
-          >
-            <Plus className="h-4 w-4" />
-            <span>Criar Postagem</span>
-          </DropdownMenuItem>
+              <DropdownMenuItem
+                className="cursor-pointer space-x-3 focus:bg-green-100"
+                onClick={handleOpenNewPostDialog}
+              >
+                <Plus className="h-4 w-4" />
+                <span>Criar Postagem</span>
+              </DropdownMenuItem>
 
-          <DropdownMenuItem
-            className="cursor-pointer space-x-3 focus:bg-green-100"
-            onClick={handleOpenEditUserPerfilDialog}
-          >
-            <Pencil className="h-4 w-4" />
-            <span>Editar perfil</span>
-          </DropdownMenuItem>
+              <DropdownMenuItem
+                className="cursor-pointer space-x-3 focus:bg-green-100"
+                onClick={handleOpenEditUserPerfilDialog}
+              >
+                <Pencil className="h-4 w-4" />
+                <span>Editar perfil</span>
+              </DropdownMenuItem>
 
-          <DropdownMenuSeparator />
-          <DropdownMenuLabel>Navegação</DropdownMenuLabel>
-          <DropdownMenuSeparator />
+              <DropdownMenuSeparator />
+              <DropdownMenuLabel>Navegação</DropdownMenuLabel>
+              <DropdownMenuSeparator />
 
-          <Link to={'/app/meus-posts'}>
-            <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
-              <Files className="h-4 w-4" />
-              <span>Meus Posts</span>
-            </DropdownMenuItem>
-          </Link>
+              <Link to={'/app/meus-posts'}>
+                <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
+                  <Files className="h-4 w-4" />
+                  <span>Meus Posts</span>
+                </DropdownMenuItem>
+              </Link>
 
-          <Link to={'/app/postagens'}>
-            <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
-              <HandHeart className="h-4 w-4" />
-              <span>Fazer doação</span>
-            </DropdownMenuItem>
-          </Link>
+              <Link to={'/app/postagens'}>
+                <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
+                  <HandHeart className="h-4 w-4" />
+                  <span>Fazer doação</span>
+                </DropdownMenuItem>
+              </Link>
 
-          <Link to={'/app/doacoes'}>
-            <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
-              <Handshake className="h-4 w-4" />
-              <span>Contribuições</span>
-            </DropdownMenuItem>
-          </Link>
+              <Link to={'/app/doacoes'}>
+                <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
+                  <Handshake className="h-4 w-4" />
+                  <span>Contribuições</span>
+                </DropdownMenuItem>
+              </Link>
 
-          <Link to={'/app/denuncia'}>
-            <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
-              <Flag className="h-4 w-4" />
-              <span>Denúncias</span>
-            </DropdownMenuItem>
-          </Link>
+              <Link to={'/app/denuncia'}>
+                <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
+                  <Flag className="h-4 w-4" />
+                  <span>Denúncias</span>
+                </DropdownMenuItem>
+              </Link>
+            </>
+          )}
 
-          <DropdownMenuSeparator />
-          <DropdownMenuLabel>Patrocinador</DropdownMenuLabel>
-          <DropdownMenuSeparator />
+          {user?.userType === 'P' && (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuLabel>Patrocinador</DropdownMenuLabel>
+              <DropdownMenuSeparator />
 
-          <Link to={'/app/patrocinador'}>
-            <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
-              <TicketPercent className="h-4 w-4" />
-              <span>Gerenciar vouchers</span>
-            </DropdownMenuItem>
-          </Link>
+              <Link to={'/app/patrocinador'}>
+                <DropdownMenuItem className="cursor-pointer space-x-3 focus:bg-green-100">
+                  <TicketPercent className="h-4 w-4" />
+                  <span>Gerenciar vouchers</span>
+                </DropdownMenuItem>
+              </Link>
+            </>
+          )}
 
           <DropdownMenuSeparator />
 
