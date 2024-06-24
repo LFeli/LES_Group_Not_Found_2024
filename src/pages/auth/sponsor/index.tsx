@@ -13,11 +13,7 @@ import { Form } from './components/form'
 export function SponsorAuth() {
   const { user } = useAuth()
 
-  const {
-    data: userVouchers,
-    isPending,
-    refetch: refetchuserVouchers,
-  } = useQuery({
+  const { data: userVouchers, isPending } = useQuery({
     queryFn: () => getUserVouchers({ userID: user?.idUser }),
     queryKey: ['get-user-vouchers', 'vouchers'],
   })

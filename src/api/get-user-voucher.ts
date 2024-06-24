@@ -1,14 +1,14 @@
 import { api } from '@/lib/axios'
 
 interface getUserVoucherProps {
-  userID: string
+  userID: number | undefined
 }
 
 interface getUserVoucherResponse {
   voucherID: string
   validateAt: string
   voucherName: string
-  value: string
+  voucherValue: string
   status: string
 }
 
@@ -20,6 +20,11 @@ interface apiResponse {
   status: string
 }
 
+const statusLabels: { [key: string]: string } = {
+  I: 'Inativo',
+  A: 'Ativo',
+}
+
 function convertApiResponse(
   data: apiResponse | apiResponse[],
 ): getUserVoucherResponse[] {
@@ -29,8 +34,8 @@ function convertApiResponse(
     voucherID: item.idVoucher,
     validateAt: item.dtVencimento,
     voucherName: item.cupom,
-    value: item.valor,
-    status: item.status,
+    voucherValue: item.valor,
+    status: statusLabels[item.status] || 'Desconhecido',
   }))
 }
 
@@ -40,6 +45,7 @@ export async function getUserVouchers({
   const response = await api.get<apiResponse>(
     `/Voucher/VoucherPatronicador/${userID}`,
   )
+  console.log(response.data)
 
   const data: getUserVoucherResponse[] = convertApiResponse(response.data)
 

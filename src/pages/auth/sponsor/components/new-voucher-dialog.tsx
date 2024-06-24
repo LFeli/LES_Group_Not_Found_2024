@@ -1,8 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
+import { getUserVouchers } from '@/api/get-user-voucher'
 import { postNewVoucher } from '@/api/post-new-voucher'
 import { ErrorMessage } from '@/components/form-error-message'
 import { Button } from '@/components/ui/button'
@@ -39,6 +40,11 @@ export function NewVoucherDialog({ closeDialog }: newVoucherDialogProps) {
     resolver: zodResolver(newVoucherSchema),
   })
 
+  const { refetch: refetchUserVouchers } = useQuery({
+    queryFn: () => getUserVouchers({ userID: user?.idUser }),
+    queryKey: ['get-user-vouchers', 'vouchers'],
+  })
+
   const { mutateAsync: postNewVoucherFn, isPending } = useMutation({
     mutationFn: postNewVoucher,
   })
@@ -52,11 +58,11 @@ export function NewVoucherDialog({ closeDialog }: newVoucherDialogProps) {
         voucherValue: data.voucherValue,
       }
 
-      postNewVoucherFn(formattedData)
-
+      await postNewVoucherFn(formattedData)
+      await refetchUserVouchers()
       closeDialog()
       reset()
-      toast.error('Voucher cadastrado com sucesso!')
+      toast.success('Voucher cadastrado com sucesso!')
     } catch {
       toast.error('Ocorreu um erro ao criar um novo voucher')
     }
@@ -81,7 +87,7 @@ export function NewVoucherDialog({ closeDialog }: newVoucherDialogProps) {
           </span>
 
           <article className="mx-1 space-y-2">
-            <Label htmlFor="voucherName">Nome completo</Label>
+            <Label htmlFor="voucherName">Nome do voucher</Label>
             <Input
               type="text"
               id="voucherName"

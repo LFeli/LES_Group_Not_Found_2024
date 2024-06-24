@@ -43,7 +43,7 @@ export const columns: ColumnDef<VouchersDataTableSchema>[] = [
   },
 
   {
-    accessorKey: 'value',
+    accessorKey: 'voucherValue',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Valor" />
     ),
@@ -51,7 +51,7 @@ export const columns: ColumnDef<VouchersDataTableSchema>[] = [
       <div>
         <span className="font-medium">
           R$ {''}
-          {row.getValue('value')}
+          {row.getValue('voucherValue')}
         </span>
       </div>
     ),

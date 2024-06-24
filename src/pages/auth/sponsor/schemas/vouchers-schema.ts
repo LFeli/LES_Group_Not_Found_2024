@@ -4,7 +4,7 @@ export const VouchersSchema = z.object({
   voucherID: z.string(),
   validateAt: z.string(),
   voucherName: z.string(),
-  value: z.string(),
+  voucherValue: z.string(),
   status: z.string(),
 })
 

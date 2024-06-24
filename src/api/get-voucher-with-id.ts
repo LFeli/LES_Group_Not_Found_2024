@@ -8,7 +8,7 @@ interface getVoucherWithIDResponse {
   voucherID: string
   validateAt: string
   voucherName: string
-  value: string
+  voucherValue: string
   status: string
 }
 
@@ -25,7 +25,7 @@ function convertApiResponse(data: apiResponse): getVoucherWithIDResponse {
     voucherID: data.idVoucher,
     validateAt: data.dtVencimento,
     voucherName: data.cupom,
-    value: data.valor,
+    voucherValue: data.valor,
     status: data.status,
   }
 }
