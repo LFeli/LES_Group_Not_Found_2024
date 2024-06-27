@@ -1,6 +1,8 @@
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { Row } from '@tanstack/react-table'
+import { Download, Eye } from 'lucide-react'
 
+import fileURL from '@/assets/auth.jpg'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -8,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { downloadFile } from '@/utils/download-file'
 
 import { DonationsSchema } from '../schemas/data-donations-schema'
 
@@ -19,6 +22,12 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   const link = DonationsSchema.parse(row.original)
+
+  function handleDownload() {
+    const fileUrl = fileURL
+    const fileName = 'comprovante.png'
+    downloadFile(fileUrl, fileName)
+  }
 
   return (
     <DropdownMenu>
@@ -32,9 +41,19 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Editar</DropdownMenuItem>
-        <DropdownMenuItem>Excluir</DropdownMenuItem>
+      <DropdownMenuContent align="end" className="w-[180px]">
+        <DropdownMenuItem className="flex items-center justify-start gap-2">
+          <Eye className="h-4 w-4" />
+          Ver publicação
+        </DropdownMenuItem>
+
+        <DropdownMenuItem
+          className="flex items-center justify-start gap-2"
+          onClick={handleDownload}
+        >
+          <Download className="h-4 w-4" />
+          Baixar comprovante
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
