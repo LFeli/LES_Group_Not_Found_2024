@@ -2,6 +2,8 @@
 
 // import { getTopThreePosts } from '@/api/get-top-three-posts'
 // import { PostCard } from '@/components/post-card'
+import { Link } from 'react-router-dom'
+
 import { Button } from '@/components/ui/button'
 
 // import { useAuth } from '@/context/auth-context'
@@ -28,9 +30,11 @@ export function MyPosts() {
 
       <DataTable columns={columns} data={data} />
 
-      <Button className="mt-16 rounded-full bg-green-500 px-12 py-6 text-base font-medium text-black hover:bg-green-600">
-        Ver minhas publicações
-      </Button>
+      <Link to={'/app/meus-posts'}>
+        <Button className="mt-16 rounded-full bg-green-500 px-12 py-6 text-base font-medium text-black hover:bg-green-600">
+          Ver minhas publicações
+        </Button>
+      </Link>
     </section>
   )
 }
