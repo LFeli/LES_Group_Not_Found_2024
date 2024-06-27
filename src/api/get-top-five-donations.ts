@@ -1,7 +1,7 @@
 import { api } from '@/lib/axios'
 
 interface getTopFiveDonationsProps {
-  userID: number
+  userID: number | undefined
 }
 
 export interface getTopFiveDonationsResponse {
@@ -9,6 +9,7 @@ export interface getTopFiveDonationsResponse {
   message: string
   donatedAt: string
   status: string
+  voucher: string
 }
 
 interface apiResponse {
@@ -16,6 +17,7 @@ interface apiResponse {
   mensagem: string
   dtDoacao: string
   status: string
+  cupomVoucher: string
 }
 
 const statusLabels: { [key: string]: string } = {
@@ -34,6 +36,7 @@ function convertApiResponse(
     message: item.mensagem,
     donatedAt: item.dtDoacao,
     status: statusLabels[item.status] || 'Desconhecido',
+    voucher: item.cupomVoucher,
   }))
 }
 
