@@ -71,6 +71,15 @@ export const columns: ColumnDef<DonationsDataTableSchema>[] = [
   },
 
   {
+    id: 'postID',
+    cell: ({ row }) => (
+      <div>
+        <span className="sr-only">{row.getValue('voucher')}</span>
+      </div>
+    ),
+  },
+
+  {
     id: 'actions',
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },

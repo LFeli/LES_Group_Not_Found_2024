@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 export const DonationsSchema = z.object({
+  postID: z.string(),
   status: z.string(),
   message: z.string(),
   donationValue: z.string(),

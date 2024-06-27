@@ -5,6 +5,7 @@ interface getTopFiveDonationsProps {
 }
 
 export interface getTopFiveDonationsResponse {
+  postID: string | number
   donationValue: string
   message: string
   donatedAt: string
@@ -13,6 +14,7 @@ export interface getTopFiveDonationsResponse {
 }
 
 interface apiResponse {
+  idPostagem: string
   valorDoacao: string
   mensagem: string
   dtDoacao: string
@@ -32,6 +34,7 @@ function convertApiResponse(
   const dataArray = Array.isArray(data) ? data : [data]
 
   return dataArray.map((item) => ({
+    postID: item.idPostagem,
     donationValue: item.valorDoacao,
     message: item.mensagem,
     donatedAt: item.dtDoacao,
