@@ -1,10 +1,20 @@
+import { useQuery } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
+
+import { getUserPosts } from '@/api/get-user-posts'
+import { useAuth } from '@/context/auth-context'
 
 import { DataTable } from './components/data-table'
 import { columns } from './components/data-table-columns'
-import data from './fake-data.json'
 
 export function UserPosts() {
+  const { user } = useAuth()
+
+  const { data: userPosts, isPending } = useQuery({
+    queryFn: () => getUserPosts({ userID: user?.idUser }),
+    queryKey: ['post', 'all-posts'],
+  })
+
   return (
     <main className="flex-1 font-karla">
       <Helmet title="Postagens" />
@@ -21,7 +31,11 @@ export function UserPosts() {
           </p>
         </div>
 
-        <DataTable columns={columns} data={data} />
+        {isPending ? (
+          <div>carregando...</div>
+        ) : (
+          <DataTable columns={columns} data={userPosts} />
+        )}
       </div>
     </main>
   )

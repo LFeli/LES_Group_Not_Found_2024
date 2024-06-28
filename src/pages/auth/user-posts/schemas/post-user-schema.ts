@@ -1,11 +1,11 @@
 import { z } from 'zod'
 
 export const postUserSchema = z.object({
-  status: z.string(),
-  title: z.string(),
-  sponsorName: z.string(),
-  donatedValue: z.string(),
-  donationStatus: z.string(),
+  statusPost: z.string(),
+  titlePost: z.string(),
+  donorName: z.string(),
+  donationValue: z.string(),
+  donorStatus: z.string(),
   postID: z.string(),
   sponsorID: z.string(),
 })

@@ -7,55 +7,55 @@ import { DataTableRowActions } from './data-table-row-action'
 
 export const columns: ColumnDef<PostUserDataTableSchema>[] = [
   {
-    accessorKey: 'status',
+    accessorKey: 'statusPost',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
     cell: ({ row }) => (
       <div className="w-full truncate font-medium">
-        <span>{row.getValue('status')}</span>
+        <span>{row.getValue('statusPost')}</span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'title',
+    accessorKey: 'titlePost',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Titulo" />
     ),
     cell: ({ row }) => (
       <div className="truncate font-medium">
-        <span>{row.getValue('title')}</span>
+        <span>{row.getValue('titlePost')}</span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'sponsorName',
+    accessorKey: 'donorName',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Nome do doador" />
     ),
     cell: ({ row }) => (
       <div>
-        <span className="font-medium">{row.getValue('sponsorName')}</span>
+        <span className="font-medium">{row.getValue('donorName')}</span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'donatedValue',
+    accessorKey: 'donationValue',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Valor doado" />
     ),
     cell: ({ row }) => (
       <div>
-        <span className="font-medium">R$ {row.getValue('donatedValue')}</span>
+        <span className="font-medium">R$ {row.getValue('donationValue')}</span>
       </div>
     ),
   },
 
   {
-    accessorKey: 'donationStatus',
+    accessorKey: 'donorStatus',
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
@@ -64,7 +64,7 @@ export const columns: ColumnDef<PostUserDataTableSchema>[] = [
     ),
     cell: ({ row }) => (
       <div>
-        <span className="font-medium">{row.getValue('donationStatus')}</span>
+        <span className="font-medium">{row.getValue('donorStatus')}</span>
       </div>
     ),
   },
