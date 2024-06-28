@@ -47,6 +47,8 @@ export async function getTopFiveSponsorForApproval() {
       response.data,
     )
 
+    console.log(data)
+
     return data
   } catch {
     throw new Error('Erro ao trazer os últimos patrocinadores para aprovação')

@@ -10,6 +10,7 @@ type StatusOutput = 'Desativado' | 'Ativado' | string
 
 const statusMap: { [key: string]: StatusOutput } = {
   N: 'Desativado',
+  P: 'Pendente',
   A: 'Ativado',
 }
 

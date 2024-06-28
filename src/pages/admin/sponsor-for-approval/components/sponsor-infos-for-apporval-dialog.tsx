@@ -1,10 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Separator } from '@radix-ui/react-dropdown-menu'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
+import { getTopFiveSponsorForApproval } from '@/api/get-top-five-sponsor-for-approval'
 import { getUserInfos } from '@/api/get-user-infos'
+import { patchApproveSponsor } from '@/api/patch-approve-sponsor'
 import { Button } from '@/components/ui/button'
 import {
   DialogContent,
@@ -44,6 +46,15 @@ export function SponsorInfosForApprovalDialog({
     queryKey: ['get-user-infos'],
   })
 
+  const { refetch } = useQuery({
+    queryFn: getTopFiveSponsorForApproval,
+    queryKey: ['top-five-sponsor-for-approval', 'sponsor-for-approval'],
+  })
+
+  const { mutateAsync: patchApproveSponsorFn } = useMutation({
+    mutationFn: patchApproveSponsor,
+  })
+
   const {
     handleSubmit,
     control,
@@ -56,6 +67,14 @@ export function SponsorInfosForApprovalDialog({
   function onFormSubmit(data: sponsorInfoFormSchema) {
     try {
       console.log(data)
+      const formattedValues = {
+        sponsorID: content.sponsorID,
+        sponsorStatus: data.status,
+        admMessage: data.message,
+      }
+
+      patchApproveSponsorFn(formattedValues)
+      refetch()
       closeDialog()
       reset()
       toast.success('Atualização do patrocinador feita com sucesso!')
