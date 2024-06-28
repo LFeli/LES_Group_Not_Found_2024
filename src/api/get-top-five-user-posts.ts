@@ -62,7 +62,7 @@ function convertApiResponse(
     postID: item.idPostagem,
     sponsorID: item.idPatrocinador,
     voucherID: item.idVoucher,
-    donationValue: item.valorDoacao,
+    donationValue: item.valorDoacao ? `R$ ${item.valorDoacao}` : '',
     message: item.mensagem,
     proofPix: item.comprovantePix,
     donationType: item.idTipoDoacao,

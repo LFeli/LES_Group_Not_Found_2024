@@ -15,6 +15,8 @@ export function UserPosts() {
     queryKey: ['post', 'all-posts'],
   })
 
+  console.log(userPosts)
+
   return (
     <main className="flex-1 font-karla">
       <Helmet title="Postagens" />

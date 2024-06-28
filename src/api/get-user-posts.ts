@@ -57,21 +57,23 @@ function convertApiResponse(
   const dataArray = Array.isArray(data) ? data : [data]
 
   return dataArray.map((item) => ({
-    donationID: item.idDoacao,
-    userDonorID: item.idUsuarioDoador,
-    postID: item.idPostagem,
-    sponsorID: item.idPatrocinador,
-    voucherID: item.idVoucher,
-    donationValue: item.valorDoacao,
-    message: item.mensagem,
-    proofPix: item.comprovantePix,
-    donationType: item.idTipoDoacao,
-    donatedAt: item.dtDoacao,
-    donorStatus: donorStatusLabels[item.status],
-    voucherName: item.cupomVoucher,
-    donorName: item.nomeUsuarioDoador,
-    titlePost: item.tituloPostagem,
-    statusPost: postStatusLabels[item.statusPostagem],
+    donationID: item.idDoacao ? item.idDoacao : '',
+    userDonorID: item.idUsuarioDoador ? item.idUsuarioDoador : '',
+    postID: item.idPostagem ? item.idPostagem : '',
+    sponsorID: item.idPatrocinador ? item.idPatrocinador : '',
+    voucherID: item.idVoucher ? item.idVoucher : '',
+    donationValue: item.valorDoacao ? `R$ ${item.valorDoacao}` : '',
+    message: item.mensagem ? item.mensagem : '',
+    proofPix: item.comprovantePix ? item.comprovantePix : '',
+    donationType: item.idTipoDoacao ? item.idTipoDoacao : '',
+    donatedAt: item.dtDoacao ? item.dtDoacao : '',
+    donorStatus: item.status ? donorStatusLabels[item.status] : '',
+    voucherName: item.cupomVoucher ? item.cupomVoucher : '',
+    donorName: item.nomeUsuarioDoador ? item.nomeUsuarioDoador : '',
+    titlePost: item.tituloPostagem ? item.tituloPostagem : '',
+    statusPost: item.statusPostagem
+      ? postStatusLabels[item.statusPostagem]
+      : '',
   }))
 }
 

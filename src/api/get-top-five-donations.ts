@@ -34,12 +34,12 @@ function convertApiResponse(
   const dataArray = Array.isArray(data) ? data : [data]
 
   return dataArray.map((item) => ({
-    postID: item.idPostagem,
-    donationValue: item.valorDoacao,
-    message: item.mensagem,
-    donatedAt: item.dtDoacao,
-    status: statusLabels[item.status] || 'Desconhecido',
-    voucher: item.cupomVoucher,
+    postID: item.idPostagem ? item.idPostagem : '',
+    donationValue: item.valorDoacao ? `R$ ${item.valorDoacao}` : '',
+    message: item.mensagem ? item.mensagem : '',
+    donatedAt: item.dtDoacao ? item.dtDoacao : '',
+    status: item.status ? statusLabels[item.status] : '',
+    voucher: item.cupomVoucher ? item.cupomVoucher : '',
   }))
 }
 

@@ -28,12 +28,12 @@ function convertApiResponse(
   const dataArray = Array.isArray(data) ? data : [data]
 
   return dataArray.map((item) => ({
-    reportID: item.idDenuncia,
-    userID: item.idUsuario,
-    postID: item.idPostagem,
-    title: item.tituloDenuncia,
-    description: item.descricaoDenuncia,
-    reportedAt: item.dataDenuncia,
+    reportID: item.idDenuncia ? item.idDenuncia : '',
+    userID: item.idUsuario ? item.idUsuario : '',
+    postID: item.idPostagem ? item.idPostagem : 0,
+    title: item.tituloDenuncia ? item.tituloDenuncia : '',
+    description: item.descricaoDenuncia ? item.descricaoDenuncia : '',
+    reportedAt: item.dataDenuncia ? item.dataDenuncia : '',
   }))
 }
 

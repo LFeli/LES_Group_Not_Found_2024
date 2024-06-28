@@ -38,10 +38,7 @@ export const columns: ColumnDef<DonationsDataTableSchema>[] = [
     ),
     cell: ({ row }) => (
       <div>
-        <span className="font-medium">
-          R$ {''}
-          {row.getValue('donationValue')}
-        </span>
+        <span className="font-medium">{row.getValue('donationValue')}</span>
       </div>
     ),
   },
