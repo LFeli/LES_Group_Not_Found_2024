@@ -26,6 +26,7 @@ interface apiResponse {
   idDoacao: string
   idUsuarioDoador: string
   idPostagem: string
+  idPatrocinador: string
   idVoucher: string
   valorDoacao: string
   mensagem: string
@@ -37,7 +38,6 @@ interface apiResponse {
   nomeUsuarioDoador: string
   tituloPostagem: string
   statusPostagem: string
-  idPatrocinador: string
 }
 
 const postStatusLabels: { [key: string]: string } = {
@@ -60,18 +60,18 @@ function convertApiResponse(
     userID: item.idDoacao,
     userDonorID: item.idUsuarioDoador,
     postID: item.idPostagem,
-    sponsorID: item.idVoucher,
-    voucherID: item.valorDoacao,
-    donationValue: item.mensagem,
-    message: item.comprovantePix,
-    proofPix: item.idTipoDoacao,
-    donationType: item.dtDoacao,
-    donatedAt: item.status,
-    donorStatus: donorStatusLabels[item.cupomVoucher],
-    voucherName: item.nomeUsuarioDoador,
-    donorName: item.tituloPostagem,
-    titlePost: item.statusPostagem,
-    statusPost: postStatusLabels[item.idPatrocinador],
+    sponsorID: item.idPatrocinador,
+    voucherID: item.idVoucher,
+    donationValue: item.valorDoacao,
+    message: item.mensagem,
+    proofPix: item.comprovantePix,
+    donationType: item.idTipoDoacao,
+    donatedAt: item.dtDoacao,
+    donorStatus: donorStatusLabels[item.status],
+    voucherName: item.cupomVoucher,
+    donorName: item.nomeUsuarioDoador,
+    titlePost: item.tituloPostagem,
+    statusPost: postStatusLabels[item.statusPostagem],
   }))
 }
 
