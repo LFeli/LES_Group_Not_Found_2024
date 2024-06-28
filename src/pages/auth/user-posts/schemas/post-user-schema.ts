@@ -7,7 +7,7 @@ export const postUserSchema = z.object({
   donationValue: z.string(),
   donorStatus: z.string(),
   postID: z.string(),
-  sponsorID: z.string(),
+  donationID: z.string(),
 })
 
 export type PostUserDataTableSchema = z.infer<typeof postUserSchema>

@@ -5,7 +5,7 @@ interface getUserPostsProps {
 }
 
 export interface getUserPostsResponse {
-  userID: string
+  donationID: string
   userDonorID: string
   postID: string
   sponsorID: string
@@ -57,7 +57,7 @@ function convertApiResponse(
   const dataArray = Array.isArray(data) ? data : [data]
 
   return dataArray.map((item) => ({
-    userID: item.idDoacao,
+    donationID: item.idDoacao,
     userDonorID: item.idUsuarioDoador,
     postID: item.idPostagem,
     sponsorID: item.idPatrocinador,

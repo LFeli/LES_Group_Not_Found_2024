@@ -88,10 +88,10 @@ export const columns: ColumnDef<PostUserDataTableSchema>[] = [
   },
 
   {
-    id: 'sponsorID',
+    id: 'donationID',
     cell: ({ row }) => (
       <div className="sr-only">
-        <span className="font-medium">{row.getValue('sponsorID')}</span>
+        <span className="font-medium">{row.getValue('donationID')}</span>
       </div>
     ),
   },
