@@ -11,14 +11,17 @@ export function PostsList() {
 
   return (
     <section className="grid grid-cols-3 items-start gap-10 pb-32">
-      {AllPosts?.map((post) => (
-        <PostCard
-          key={post.postID}
-          postID={post.postID}
-          content={post.content}
-          status={post.status}
-        />
-      ))}
+      {AllPosts ? (
+        AllPosts?.map((post) => (
+          <PostCard
+            key={post.postID}
+            content={post.content}
+            status={post.status}
+          />
+        ))
+      ) : (
+        <span>Carregando...</span>
+      )}
     </section>
   )
 }
