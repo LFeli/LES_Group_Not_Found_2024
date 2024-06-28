@@ -1,5 +1,5 @@
 import { Dialog } from '@radix-ui/react-dialog'
-import { Files, HandHeart, PlusCircle, TicketPercent } from 'lucide-react'
+import { AlertTriangle, Files, HandHeart, PlusCircle } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -91,7 +91,7 @@ export function QuickLinks() {
               className="group h-20 whitespace-normal p-0 hover:bg-green-50"
             >
               <div className="flex h-20 w-[80px] items-center justify-center rounded-md bg-green-100">
-                <TicketPercent className="h-8 w-8" />
+                <AlertTriangle className="h-8 w-8" />
               </div>
 
               <span className="flex h-full flex-col items-start justify-start gap-1 px-4 pt-2 text-left">
