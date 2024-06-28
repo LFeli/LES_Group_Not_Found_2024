@@ -1,23 +1,20 @@
-// import { useQuery } from '@tanstack/react-query'
-
-// import { getTopThreePosts } from '@/api/get-top-three-posts'
-// import { PostCard } from '@/components/post-card'
+import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 
+import { getTopFiveUserPosts } from '@/api/get-top-five-user-posts'
 import { Button } from '@/components/ui/button'
+import { useAuth } from '@/context/auth-context'
 
-// import { useAuth } from '@/context/auth-context'
-import data from '../../user-posts/fake-data.json'
 import { columns } from './user-post-columns'
 import { DataTable } from './user-post-data-table'
 
 export function MyPosts() {
-  // const { user } = useAuth()
+  const { user } = useAuth()
 
-  // const { data: topThreePosts } = useQuery({
-  //   queryFn: () => getTopThreePosts({ userID: user?.idUser }),
-  //   queryKey: ['post', 'all-posts'],
-  // })
+  const { data: topFiveUserPosts, isPending } = useQuery({
+    queryFn: () => getTopFiveUserPosts({ userID: user?.idUser }),
+    queryKey: ['post', 'all-posts'],
+  })
 
   return (
     <section className="flex flex-col items-center justify-center pb-32">
@@ -28,7 +25,11 @@ export function MyPosts() {
         </p>
       </div>
 
-      <DataTable columns={columns} data={data} />
+      {isPending ? (
+        <div>carregando...</div>
+      ) : (
+        <DataTable columns={columns} data={topFiveUserPosts} />
+      )}
 
       <Link to={'/app/meus-posts'}>
         <Button className="mt-16 rounded-full bg-green-500 px-12 py-6 text-base font-medium text-black hover:bg-green-600">
