@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
+import { getAllUsers } from '@/api/get-all-users'
 import { getUserInfos } from '@/api/get-user-infos'
 import { patchUser, patchUserBody } from '@/api/patch-user'
 import { ErrorMessage } from '@/components/form-error-message'
@@ -54,6 +55,11 @@ export function AdmEditUserInfosDialog({
     queryKey: ['get-user-infos'],
   })
 
+  const { refetch } = useQuery({
+    queryFn: getAllUsers,
+    queryKey: ['allUsers'],
+  })
+
   const {
     register,
     handleSubmit,
@@ -101,7 +107,7 @@ export function AdmEditUserInfosDialog({
       // Update user ID
       data.userID = userID
       await patchUserFn(data)
-
+      refetch()
       // Close and reset Dialog
       closeDialog()
       reset()
